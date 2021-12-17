@@ -10,13 +10,11 @@ package pokemon_p2p;
  * @author sorleto_domenico
  */
 public class JPokemon {
-
-   
     Integer id;
     String name;
     String type1;
     String type2;
-    String HP;
+    Integer HP;
     String description;
     String sprite;
     String hires;
@@ -53,11 +51,11 @@ public class JPokemon {
         this.type2 = type2;
     }
 
-    public String getHP() {
+    public Integer getHP() {
         return HP;
     }
 
-    public void setHP(String HP) {
+    public void setHP(Integer HP) {
         this.HP = HP;
     }
 
@@ -86,7 +84,6 @@ public class JPokemon {
     }
     
     public String toString(){
-    return name+HP;
-    
+    return name+" "+HP;
     }
 }
