@@ -15,7 +15,6 @@ public class Pokemon_p2p {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
     }
     
 }
