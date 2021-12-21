@@ -10,5 +10,10 @@ package pokemon_p2p;
  * @author sorleto_domenico
  */
 public class JMoves {
-    
+    Integer accurancy;
+    String ename;
+    Integer id;
+    Integer power;
+    Integer pp;
+    String type;
 }
