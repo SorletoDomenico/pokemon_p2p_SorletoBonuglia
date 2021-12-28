@@ -18,8 +18,8 @@ public class Pokemon_p2p {
      */
     public static void main(String[] args) {
        
-        JFormMenu fm=new JFormMenu();
-        fm.setVisible(true);
+        JFormConnessione fc=new JFormConnessione();
+        fc.setVisible(true);
        
        
     }
