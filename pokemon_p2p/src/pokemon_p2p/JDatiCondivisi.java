@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class JDatiCondivisi {
      ArrayList<List> listapokemon = new <List>ArrayList();
-    ArrayList<List> listamosse  = new <List>ArrayList();
+    ArrayList<List> listamosse = new <List>ArrayList();
 }
 
   
