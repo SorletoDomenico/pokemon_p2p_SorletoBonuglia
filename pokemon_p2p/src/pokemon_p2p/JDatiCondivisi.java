@@ -30,7 +30,7 @@ public class JDatiCondivisi {
     public JDatiCondivisi(){
     
     }
-    public void manda_connessione(String ip, Integer port) throws SocketException, IOException{
+    public void mandaConnessione(String ip, Integer port) throws SocketException, IOException{
         
         byte[] data = new byte[1500];
         data = ("c;" + ip + ";" + port + ";").getBytes();
@@ -40,6 +40,24 @@ public class JDatiCondivisi {
         p.setPort(port);
         s.send(p);
     }
+    
+    
+    public void riceviConnessione() throws SocketException, IOException{
+        byte[] data = new byte[1500];
+        DatagramPacket p;
+        DatagramSocket s = new DatagramSocket(portaPeer);
+        String[] vect;
+        
+        do{
+                data = new byte[1500];
+                p = new DatagramPacket(data, data.length);
+                s.receive(p);
+                String str = new String(data);
+                vect = str.split(";"); //c;ip;porta;nome
+        
+        }while(true);
+
+  }
 }
 
   
