@@ -10,7 +10,6 @@ package pokemon_p2p;
  * @author sorleto_domenico
  */
 public class JMoves {
-
     
     Integer accurancy;
     String ename;

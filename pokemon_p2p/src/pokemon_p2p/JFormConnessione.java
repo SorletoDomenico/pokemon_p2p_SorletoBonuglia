@@ -19,7 +19,11 @@ public class JFormConnessione extends javax.swing.JFrame {
     /**
      * Creates new form JFormConnessione
      */
+    
+    JDatiCondivisiConnessione dati;
+    
     public JFormConnessione() {
+        dati = new JDatiCondivisiConnessione();
         initComponents();
     }
 
@@ -38,6 +42,7 @@ public class JFormConnessione extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +70,13 @@ public class JFormConnessione extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("Avanti");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,7 +94,11 @@ public class JFormConnessione extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                            .addComponent(jTextField2)))))
+                            .addComponent(jTextField2))))
+                .addContainerGap(103, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton3))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +115,8 @@ public class JFormConnessione extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jButton3))
         );
 
         pack();
@@ -107,15 +124,23 @@ public class JFormConnessione extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JDatiCondivisi dati = new JDatiCondivisi();
-       
-        try {
+        
+        Thread threadManda = new Thread("New Thread") {
+      public void run(){
+         try {
              String ip=jTextField1.getText();
         Integer porta=parseInt(jTextField2.getText());
             dati.mandaConnessione(ip,porta);
         } catch (IOException ex) {
             Logger.getLogger(JFormConnessione.class.getName()).log(Level.SEVERE, null, ex);
         }
+      }
+    };
+   threadManda.start();
+   System.out.println(threadManda.getName());
+            
+        
+           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -124,13 +149,28 @@ public class JFormConnessione extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        JDatiCondivisi dati= new JDatiCondivisi();
-        try {
-            dati.riceviConnessione();
-        } catch (IOException ex) {
+       Thread threadRicevi = new Thread("New Thread") {
+        
+        public void run(){
+            try {
+               dati.riceviConnessione();
+                } catch (IOException ex) {
             Logger.getLogger(JFormConnessione.class.getName()).log(Level.SEVERE, null, ex);
+         }
         }
+      };
+      threadRicevi.start();
+      System.out.println(threadRicevi.getName());
+      
+      
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:     
+        JFormMenu jfm = new JFormMenu();
+        jfm.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,6 +210,7 @@ public class JFormConnessione extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
