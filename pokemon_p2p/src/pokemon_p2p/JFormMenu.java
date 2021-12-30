@@ -5,6 +5,11 @@
  */
 package pokemon_p2p;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author sorleto_domenico
@@ -14,8 +19,14 @@ public class JFormMenu extends javax.swing.JFrame {
     /**
      * Creates new form JFormMenu
      */
-    public JFormMenu() {
+    JDatiCondivisiConnessione dati;
+    public JFormMenu(JDatiCondivisiConnessione dati) {
         initComponents();
+        this.dati= dati;
+    }
+
+    private JFormMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -106,7 +117,13 @@ public class JFormMenu extends javax.swing.JFrame {
         JFormSelezionaSquadra jsq = new JFormSelezionaSquadra();
         jsq.setVisible(true);
         this.setVisible(false);
-        
+        try {
+            dati.caricadaJson();
+        } catch (IOException ex) {
+            Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
      
     }//GEN-LAST:event_jButton1ActionPerformed
 

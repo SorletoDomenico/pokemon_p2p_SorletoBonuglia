@@ -167,7 +167,7 @@ public class JFormConnessione extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:     
-        JFormMenu jfm = new JFormMenu();
+        JFormMenu jfm = new JFormMenu(dati);
         jfm.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed

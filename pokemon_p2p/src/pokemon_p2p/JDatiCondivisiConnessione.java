@@ -6,6 +6,7 @@
 package pokemon_p2p;
 
 import java.awt.List;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -15,6 +16,10 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -26,9 +31,8 @@ public class JDatiCondivisiConnessione {
     private JPeer pNoi;
     private JPeer pAvversario;
 
-   // ArrayList<List> listapokemon = new <List>ArrayList();
+    // ArrayList<List> listapokemon = new <List>ArrayList();
     //ArrayList<List> listamosse = new <List>ArrayList();
-
     private Boolean c;  //connessione
 
     public JDatiCondivisiConnessione() {
@@ -102,6 +106,33 @@ public class JDatiCondivisiConnessione {
             //System.out.println("Connesso");
         }
 
+    }
+
+    //parte gioco
+    public ArrayList<JPokemon> listapokemon;
+
+    public ArrayList<JPokemon> getListapokemon() {
+        return listapokemon;
+    }
+    public void caricadaJson() throws FileNotFoundException, IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
+     
+            for (Object obj : a) {
+               // obj = parser.parse(new FileReader("pokemon.json"));
+                JSONObject Pokemon = (JSONObject) obj;
+
+                Integer id = Integer.parseInt((String)Pokemon.get("id"));
+                String name = (String) Pokemon.get("name");
+                String type1 = (String) Pokemon.get("type1");
+                String type2 = (String) Pokemon.get("type2");
+                Integer hp = Integer.parseInt((String)Pokemon.get("HP"));
+                String description = (String) Pokemon.get("description");
+                String sprite = (String) Pokemon.get("sprite");
+                String hires = (String) Pokemon.get("hires");
+            }
+
+      listapokemon = a;
     }
 }
 
