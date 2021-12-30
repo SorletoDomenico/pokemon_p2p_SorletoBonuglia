@@ -26,8 +26,8 @@ public class JDatiCondivisiConnessione {
     private JPeer pNoi;
     private JPeer pAvversario;
 
-    ArrayList<List> listapokemon = new <List>ArrayList();
-    ArrayList<List> listamosse = new <List>ArrayList();
+   // ArrayList<List> listapokemon = new <List>ArrayList();
+    //ArrayList<List> listamosse = new <List>ArrayList();
 
     private Boolean c;  //connessione
 
