@@ -32,7 +32,7 @@ public class JDatiCondivisiConnessione {
     private JPeer pAvversario;
     public ArrayList<JPokemon> listapokemon= new ArrayList<JPokemon>();
 
-    public ArrayList<String> listapokemoninList;
+    public ArrayList<JPokemon> listapokemonSelezionati = new ArrayList<JPokemon>();
     private Boolean c;  //connessione
 
     public JDatiCondivisiConnessione() {
@@ -137,8 +137,9 @@ public class JDatiCondivisiConnessione {
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
     }
-      public ArrayList<String> getListapokemoninList() {
-        return listapokemoninList;
+    
+      public ArrayList<JPokemon> getListapokemonSelezionati() {
+        return listapokemonSelezionati;
     }
 
     
