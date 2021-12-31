@@ -30,9 +30,9 @@ public class JDatiCondivisiConnessione {
     private DatagramSocket s;
     private JPeer pNoi;
     private JPeer pAvversario;
+    public ArrayList<JPokemon> listapokemon;
 
-    // ArrayList<List> listapokemon = new <List>ArrayList();
-    //ArrayList<List> listamosse = new <List>ArrayList();
+    public ArrayList<String> listapokemoninList;
     private Boolean c;  //connessione
 
     public JDatiCondivisiConnessione() {
@@ -109,60 +109,37 @@ public class JDatiCondivisiConnessione {
     }
 
     //parte gioco
-    public ArrayList<JPokemon> listapokemon;
+    public void caricadaJson() throws FileNotFoundException, IOException, ParseException {
+        JSONParser parser = new JSONParser();
+        JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
+    
+
+        for (Object obj : a) {
+            // obj = parser.parse(new FileReader("pokemon.json"));
+            JSONObject Pokemon = (JSONObject) obj;
+           
+            Integer id = Integer.parseInt((String) Pokemon.get("id"));
+            String name = (String) Pokemon.get("name");
+            String type1 = (String) Pokemon.get("type1");
+            String type2 = (String) Pokemon.get("type2");
+            Integer hp = Integer.parseInt((String) Pokemon.get("HP"));
+            String description = (String) Pokemon.get("description");
+            String sprite = (String) Pokemon.get("sprite");
+            String hires = (String) Pokemon.get("hires");
+            
+        }
+           
+        listapokemon = a;
+       
+    }
 
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
     }
-    public void caricadaJson() throws FileNotFoundException, IOException, ParseException {
-        JSONParser parser = new JSONParser();
-        JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
-     
-            for (Object obj : a) {
-               // obj = parser.parse(new FileReader("pokemon.json"));
-                JSONObject Pokemon = (JSONObject) obj;
-
-                Integer id = Integer.parseInt((String)Pokemon.get("id"));
-                String name = (String) Pokemon.get("name");
-                String type1 = (String) Pokemon.get("type1");
-                String type2 = (String) Pokemon.get("type2");
-                Integer hp = Integer.parseInt((String)Pokemon.get("HP"));
-                String description = (String) Pokemon.get("description");
-                String sprite = (String) Pokemon.get("sprite");
-                String hires = (String) Pokemon.get("hires");
-            }
-
-      listapokemon = a;
+      public ArrayList<String> getListapokemoninList() {
+        return listapokemoninList;
     }
+
+    
+
 }
-
-//    
-//    
-//
-//    //metodo leggi da file json
-//    public JDatiCondivisi() {
-//
-//    }
-//    public void readFromJson() {
-//        JSONArray a = (JSONArray) parser.parse(new FileReader("c:\\exer4-courses.json"));
-//        
-//        for (Object o : a) {
-//            JSONObject person = (JSONObject) o;
-//
-//            String name = (String) person.get("name");
-//            System.out.println(name);
-//
-//            String city = (String) person.get("city");
-//            System.out.println(city);
-//
-//            String job = (String) person.get("job");
-//            System.out.println(job);
-//
-//            JSONArray cars = (JSONArray) person.get("cars");
-//
-//            for (Object c : cars) {
-//                System.out.println(c + "");
-//            }
-//        }
-
-//    }

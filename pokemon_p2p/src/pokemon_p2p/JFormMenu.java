@@ -8,6 +8,8 @@ package pokemon_p2p;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -124,6 +126,8 @@ public class JFormMenu extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
+        
      
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -132,7 +136,8 @@ public class JFormMenu extends javax.swing.JFrame {
       
         JFormLotta jl = new JFormLotta();
         jl.setVisible(true);
-        this.setVisible(false);    
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

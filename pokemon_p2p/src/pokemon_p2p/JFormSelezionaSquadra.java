@@ -5,9 +5,20 @@
  */
 package pokemon_p2p;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListModel;
+import static javax.swing.UIManager.get;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -19,11 +30,15 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
      * Creates new form JFormSelezionaSquadra
      */
     JDatiCondivisiConnessione dati;
+    //ArrayList<JPokemon> listariempi;
+    DefaultListModel model=model= new DefaultListModel();
+  
     public JFormSelezionaSquadra() {
+         dati=new JDatiCondivisiConnessione();
         initComponents();
-        dati=new JDatiCondivisiConnessione();
+        
     }
-
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +51,6 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Listapokemonfisica = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -68,29 +82,22 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(92, 92, 92)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 148, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 78, Short.MAX_VALUE)))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -111,16 +118,24 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    // DefaultListModel listModel = new DefaultListModel();
+
+        try {
+            dati.caricadaJson();
+//        Listapokemonfisica.setModel(model);
+//        JSONParser parser = new JSONParser();
+//        JSONArray a;
+//    
+//            a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
+//      
+//        for (Object obj : a) {
+//        JSONObject Pokemon = (JSONObject) obj;
+//        model.addElement(Pokemon.get("name"));
+        } catch (IOException ex) {
+            Logger.getLogger(JFormSelezionaSquadra.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JFormSelezionaSquadra.class.getName()).log(Level.SEVERE, null, ex);
+        }
      
-       // Listapokemonfisica.setModel((ListModel<String>) dati.getListapokemon());
-        //Listapokemonfisica=new JList(dati.getListapokemon());
-         Listapokemonfisica = new JList((ListModel) dati.getListapokemon());
-//       for(int i=0;i<dati.getListapokemon().size();i++)
-//       {
-//         Listapokemonfisica = new JList((ListModel) dati.getListapokemon());
-//       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -163,7 +178,6 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

@@ -30,8 +30,7 @@ public class JPeer {
     public void setPorte(Integer porte) {
         this.porte = porte;
     }
-    
-    
+
     public String getNome() {
         return nome;
     }
