@@ -116,9 +116,8 @@ public class JFormMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JFormSelezionaSquadra jsq = new JFormSelezionaSquadra(dati);
-        jsq.setVisible(true);
-        this.setVisible(false);
+       
+        
         try {
             dati.caricadaJson();
         } catch (IOException ex) {
@@ -126,9 +125,9 @@ public class JFormMenu extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
-      
-        
-     
+         JFormSelezionaSquadra jsq = new JFormSelezionaSquadra(dati);
+        jsq.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

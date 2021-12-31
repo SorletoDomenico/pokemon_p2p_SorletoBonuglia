@@ -30,19 +30,29 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
     /**
      * Creates new form JFormSelezionaSquadra
      */
-    
     JDatiCondivisiConnessione dati;
-    DefaultListModel model= new DefaultListModel();
+    DefaultListModel model = new DefaultListModel();
+
     public JFormSelezionaSquadra(JDatiCondivisiConnessione dati) {
-         this.dati=dati;
+        this.dati = dati;
         initComponents();
-        
+        initLista(this.dati);
+
     }
 
     private JFormSelezionaSquadra() {
+        
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-     
+
+    private void initLista(JDatiCondivisiConnessione dati) {
+        ArrayList<JPokemon> lista = dati.getListapokemon();
+        Listapokemonfisica.setModel(model);
+        for (int i = 0; i < lista.size(); i++) {
+            model.addElement(lista.get(i).name);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,17 +127,13 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFormMenu jfm = new JFormMenu(dati);
         jfm.setVisible(true);
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- 
-      ArrayList<JPokemon> lista = dati.getListapokemon();
-        Listapokemonfisica.setModel(model);
-     for(int i=0;i<lista.size();i++){
-       model.addElement(lista.get(i).name);
-     }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -160,7 +166,9 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new JFormSelezionaSquadra().setVisible(true);
+  
             }
         });
     }
