@@ -30,7 +30,7 @@ public class JDatiCondivisiConnessione {
     private DatagramSocket s;
     private JPeer pNoi;
     private JPeer pAvversario;
-    public ArrayList<JPokemon> listapokemon;
+    public ArrayList<JPokemon> listapokemon= new ArrayList<JPokemon>();
 
     public ArrayList<String> listapokemoninList;
     private Boolean c;  //connessione
@@ -112,7 +112,7 @@ public class JDatiCondivisiConnessione {
     public void caricadaJson() throws FileNotFoundException, IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
-    
+        ArrayList<JPokemon> temp= new ArrayList<JPokemon>();
 
         for (Object obj : a) {
             // obj = parser.parse(new FileReader("pokemon.json"));
@@ -126,10 +126,11 @@ public class JDatiCondivisiConnessione {
             String description = (String) Pokemon.get("description");
             String sprite = (String) Pokemon.get("sprite");
             String hires = (String) Pokemon.get("hires");
-            
+            JPokemon p= new JPokemon(id,name,type1,type2,hp,description,sprite,hires);
+            temp.add(p);
         }
            
-        listapokemon = a;
+        listapokemon = temp;
        
     }
 

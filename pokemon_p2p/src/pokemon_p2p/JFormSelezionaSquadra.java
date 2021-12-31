@@ -15,6 +15,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListModel;
 import static javax.swing.UIManager.get;
+import javax.swing.event.ListDataListener;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -29,14 +30,17 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
     /**
      * Creates new form JFormSelezionaSquadra
      */
+    
     JDatiCondivisiConnessione dati;
-    //ArrayList<JPokemon> listariempi;
-    DefaultListModel model=model= new DefaultListModel();
-  
-    public JFormSelezionaSquadra() {
-         dati=new JDatiCondivisiConnessione();
+    DefaultListModel model= new DefaultListModel();
+    public JFormSelezionaSquadra(JDatiCondivisiConnessione dati) {
+         this.dati=dati;
         initComponents();
         
+    }
+
+    private JFormSelezionaSquadra() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
      
     /**
@@ -118,24 +122,12 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        try {
-            dati.caricadaJson();
-//        Listapokemonfisica.setModel(model);
-//        JSONParser parser = new JSONParser();
-//        JSONArray a;
-//    
-//            a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
-//      
-//        for (Object obj : a) {
-//        JSONObject Pokemon = (JSONObject) obj;
-//        model.addElement(Pokemon.get("name"));
-        } catch (IOException ex) {
-            Logger.getLogger(JFormSelezionaSquadra.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(JFormSelezionaSquadra.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     
+ 
+      ArrayList<JPokemon> lista = dati.getListapokemon();
+        Listapokemonfisica.setModel(model);
+     for(int i=0;i<lista.size();i++){
+       model.addElement(lista.get(i).name);
+     }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
