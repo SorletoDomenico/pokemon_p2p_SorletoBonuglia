@@ -17,6 +17,15 @@ public class JMoves {
     Integer power;
     Integer pp;
     String type;
+
+    public JMoves(Integer accurancy, String ename, Integer id, Integer power, Integer pp, String type) {
+        this.accurancy = accurancy;
+        this.ename = ename;
+        this.id = id;
+        this.power = power;
+        this.pp = pp;
+        this.type = type;
+    }
     
   public Integer getAccurancy() {
         return accurancy;

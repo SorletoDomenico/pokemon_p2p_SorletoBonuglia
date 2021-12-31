@@ -305,6 +305,7 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if(dati.getListapokemonSelezionati().size() == 6){ 
+            dati.RandomizeMoves();
             JFormMenu jfm = new JFormMenu(dati);
         jfm.setVisible(true);
 

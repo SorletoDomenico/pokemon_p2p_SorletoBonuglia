@@ -14,6 +14,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONArray;
@@ -30,9 +31,13 @@ public class JDatiCondivisiConnessione {
     private DatagramSocket s;
     private JPeer pNoi;
     private JPeer pAvversario;
-    public ArrayList<JPokemon> listapokemon= new ArrayList<JPokemon>();
+    public ArrayList<JPokemon> listapokemon = new ArrayList<JPokemon>();
+    public ArrayList<JMoves> listamosse = new ArrayList<JMoves>();
 
     public ArrayList<JPokemon> listapokemonSelezionati = new ArrayList<JPokemon>();
+    public ArrayList<JPokemonLotta> listapokemonlotta = new ArrayList<JPokemonLotta>();
+
+    
     private Boolean c;  //connessione
 
     public JDatiCondivisiConnessione() {
@@ -112,12 +117,14 @@ public class JDatiCondivisiConnessione {
     public void caricadaJson() throws FileNotFoundException, IOException, ParseException {
         JSONParser parser = new JSONParser();
         JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
-        ArrayList<JPokemon> temp= new ArrayList<JPokemon>();
+        JSONArray am = (JSONArray) parser.parse(new FileReader("moves.json"));
+        ArrayList<JPokemon> temp = new ArrayList<JPokemon>();
+        ArrayList<JMoves> temp2 = new ArrayList<JMoves>();
 
         for (Object obj : a) {
             // obj = parser.parse(new FileReader("pokemon.json"));
             JSONObject Pokemon = (JSONObject) obj;
-           
+
             Integer id = Integer.parseInt((String) Pokemon.get("id"));
             String name = (String) Pokemon.get("name");
             String type1 = (String) Pokemon.get("type1");
@@ -126,22 +133,64 @@ public class JDatiCondivisiConnessione {
             String description = (String) Pokemon.get("description");
             String sprite = (String) Pokemon.get("sprite");
             String hires = (String) Pokemon.get("hires");
-            JPokemon p= new JPokemon(id,name,type1,type2,hp,description,sprite,hires);
+            JPokemon p = new JPokemon(id, name, type1, type2, hp, description, sprite, hires);
             temp.add(p);
         }
-           
+
+        for (Object obj : am) {
+            JSONObject Move = (JSONObject) obj;
+
+            Integer accuracy = Integer.parseInt((String) Move.get("accuracy"));
+            String ename = (String) Move.get("ename");
+            Integer id = Integer.parseInt((String) Move.get("id"));
+            Integer power = Integer.parseInt((String) Move.get("power"));
+            Integer pp = Integer.parseInt((String) Move.get("pp"));
+            String type = (String) Move.get("type");
+            JMoves m = new JMoves(accuracy, ename, id, power, pp, type);
+            temp2.add(m);
+        }
+
         listapokemon = temp;
-       
+        listamosse = temp2;
+    }
+
+    public void RandomizeMoves() {
+        //assegnare 4 mosse a caso ai pokemon scelti per combattere che possono essere solo o normale o del suo tipo
+        Random r = new Random();
+        ArrayList<JMoves> mossedelpokemon = new ArrayList<JMoves>();
+        ArrayList<JMoves> temp;
+        for (int i = 0; i < getListapokemonSelezionati().size(); i++) {
+            temp=new  ArrayList<JMoves>();
+            for (int x = 0; x < getListamosse().size(); x++) {
+                if ((getListapokemonSelezionati().get(i).type1.equals(getListamosse().get(x).type) || getListamosse().get(x).type.equals(getListapokemonSelezionati().get(i).type2) || getListamosse().get(x).type.equals("Normal")) && !getListamosse().get(x).power.equals(0)) {
+                    mossedelpokemon.add(getListamosse().get(x));
+                }
+            }
+            for (int m = 0; m < 4; m++) {
+                JMoves mossa = mossedelpokemon.get(r.nextInt(mossedelpokemon.size()));
+                if (!temp.contains(mossa)) {
+                    temp.add(mossa);
+                }
+            }
+
+            JPokemonLotta p = new JPokemonLotta(getListapokemonSelezionati().get(i), temp.get(0), temp.get(1), temp.get(2), temp.get(3));
+            listapokemonlotta.add(p);
+        }
     }
 
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
     }
-    
-      public ArrayList<JPokemon> getListapokemonSelezionati() {
-        return listapokemonSelezionati;
+
+    public ArrayList<JMoves> getListamosse() {
+        return listamosse;
     }
 
-    
+    public ArrayList<JPokemon> getListapokemonSelezionati() {
+        return listapokemonSelezionati;
+    }
+    public ArrayList<JPokemonLotta> getListapokemonlotta() {
+        return listapokemonlotta;
+    }
 
 }
