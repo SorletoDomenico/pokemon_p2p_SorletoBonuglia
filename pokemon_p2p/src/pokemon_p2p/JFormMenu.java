@@ -103,6 +103,10 @@ public class JFormMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+      
         JFormSelezionaSquadra jsq = new JFormSelezionaSquadra();
         jsq.setVisible(true);
         this.setVisible(false);
