@@ -13,6 +13,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -29,16 +30,16 @@ import org.json.simple.parser.ParseException;
 public class JDatiCondivisiConnessione {
 
     private DatagramSocket s;
-    private JPeer pNoi;
-    private JPeer pAvversario;
+    public JPeer pNoi;
+    public JPeer pAvversario;
     public ArrayList<JPokemon> listapokemon = new ArrayList<JPokemon>();
     public ArrayList<JMoves> listamosse = new ArrayList<JMoves>();
 
     public ArrayList<JPokemon> listapokemonSelezionati = new ArrayList<JPokemon>();
     public ArrayList<JPokemonLotta> listapokemonlotta = new ArrayList<JPokemonLotta>();
 
-    
-    private Boolean c;  //connessione
+    public Boolean c;  //connessione
+    public String[] temp;
 
     public JDatiCondivisiConnessione() {
 
@@ -77,6 +78,15 @@ public class JDatiCondivisiConnessione {
 
     }
 
+    public void MandaMossa(String si, String ip, Integer port) throws UnknownHostException, IOException {
+        byte[] mandaDati = (pNoi.getPorte() + si).getBytes();
+        DatagramPacket p = new DatagramPacket(mandaDati, mandaDati.length);
+        p.setAddress(InetAddress.getByName(ip));
+        p.setPort(port);
+        s.send(p);
+
+    }
+
     public void riceviConnessione() throws SocketException, IOException {
 
         //controllo 
@@ -110,6 +120,28 @@ public class JDatiCondivisiConnessione {
 
             //System.out.println("Connesso");
         }
+
+    }
+
+    public void RiceviMossa() throws IOException {
+        byte[] riceviDati;
+        String[] vect;
+        String dividi;
+        do {
+            //ricevo il pacchetto
+            riceviDati = new byte[1500];
+            DatagramPacket p;
+            p = new DatagramPacket(riceviDati, riceviDati.length);
+            s.receive(p);
+            //dividiamo il nostro pacchetto
+            dividi = new String(riceviDati);
+            vect = dividi.split(";");
+            //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
+            if (Integer.parseInt(vect[0]) == pAvversario.getPorte()) {
+                temp = vect;
+            }
+
+        } while (true);
 
     }
 
@@ -160,20 +192,19 @@ public class JDatiCondivisiConnessione {
         ArrayList<JMoves> mossedelpokemon = new ArrayList<JMoves>();
         ArrayList<JMoves> temp;
         for (int i = 0; i < getListapokemonSelezionati().size(); i++) {
-            temp=new  ArrayList<JMoves>();
+            temp = new ArrayList<JMoves>();
             for (int x = 0; x < getListamosse().size(); x++) {
                 if ((getListapokemonSelezionati().get(i).type1.equals(getListamosse().get(x).type) || getListamosse().get(x).type.equals(getListapokemonSelezionati().get(i).type2) || getListamosse().get(x).type.equals("Normal")) && !getListamosse().get(x).power.equals(0)) {
                     mossedelpokemon.add(getListamosse().get(x));
                 }
-                
-                
+
             }
             for (int m = 0; m < 4; m++) {
                 JMoves mossa = mossedelpokemon.get(r.nextInt(mossedelpokemon.size()));
                 if (!temp.contains(mossa)) {
                     temp.add(mossa);
-                }else{
-                m--;
+                } else {
+                    m--;
                 }
             }
 
@@ -193,8 +224,29 @@ public class JDatiCondivisiConnessione {
     public ArrayList<JPokemon> getListapokemonSelezionati() {
         return listapokemonSelezionati;
     }
+
     public ArrayList<JPokemonLotta> getListapokemonlotta() {
         return listapokemonlotta;
+    }
+
+    public JPeer getpNoi() {
+        return pNoi;
+    }
+
+    public JPeer getpAvversario() {
+        return pAvversario;
+    }
+
+    public Boolean getC() {
+        return c;
+    }
+
+    public String[] getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String[] temp) {
+        this.temp = temp;
     }
 
 }

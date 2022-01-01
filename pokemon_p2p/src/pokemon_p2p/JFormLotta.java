@@ -5,12 +5,15 @@
  */
 package pokemon_p2p;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -26,8 +29,9 @@ public class JFormLotta extends javax.swing.JFrame {
      * Creates new form JFormLotta
      */
     JDatiCondivisiConnessione dati;
+
     public JFormLotta(JDatiCondivisiConnessione dati) {
-        this.dati= dati;
+        this.dati = dati;
         initComponents();
         initPokemonInCampo(this.dati);
     }
@@ -35,32 +39,38 @@ public class JFormLotta extends javax.swing.JFrame {
     private JFormLotta() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    private void initPokemonInCampo(JDatiCondivisiConnessione dati){
+
+    private void initPokemonInCampo(JDatiCondivisiConnessione dati) {
         jLabel1.setText(dati.getListapokemonlotta().get(0).pokemon.name);
-        
+
         //immagine nella label2
         String imagePath = dati.getListapokemonSelezionati().get(0).hires;
         Image myPicture;
+
         try {
             myPicture = ImageIO.read(new File(imagePath));
             Image newImage = myPicture.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT);
             ImageIcon icon = new ImageIcon(newImage);
             jLabel2.setIcon(icon);
-                } catch (IOException ex) {
-                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        } catch (IOException ex) {
+            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        jProgressBar1.setMaximum(dati.getListapokemonlotta().get(0).pokemon.HP);
+        jProgressBar1.setValue(dati.getListapokemonlotta().get(0).pokemon.HP);
+        jProgressBar1.setForeground(Color.GREEN);
+        jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
+        
 
         jButton1.setText(dati.getListapokemonlotta().get(0).mossa1.ename);
-        jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa1.type+"\n accurancy: "+dati.getListapokemonlotta().get(0).mossa1.accurancy+"\n power: "+dati.getListapokemonlotta().get(0).mossa1.power);
+        jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power);
         jButton2.setText(dati.getListapokemonlotta().get(0).mossa2.ename);
-        jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa2.type+"\n accurancy: "+dati.getListapokemonlotta().get(0).mossa2.accurancy+"\n power: "+dati.getListapokemonlotta().get(0).mossa2.power);
+        jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa2.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa2.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa2.power);
         jButton3.setText(dati.getListapokemonlotta().get(0).mossa3.ename);
-        jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa3.type+"\n accurancy: "+dati.getListapokemonlotta().get(0).mossa3.accurancy+"\n power: "+dati.getListapokemonlotta().get(0).mossa3.power);
+        jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa3.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa3.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa3.power);
         jButton4.setText(dati.getListapokemonlotta().get(0).mossa4.ename);
-        jTextArea4.setText(dati.getListapokemonlotta().get(0).mossa4.type+"\n accurancy: "+dati.getListapokemonlotta().get(0).mossa4.accurancy+"\n power: "+dati.getListapokemonlotta().get(0).mossa4.power);
-        
-        
+        jTextArea4.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power);
+
     }
 
     /**
@@ -88,6 +98,12 @@ public class JFormLotta extends javax.swing.JFrame {
         jTextArea4 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,7 +120,7 @@ public class JFormLotta extends javax.swing.JFrame {
 
         jButton4.setText("jButton4");
 
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("SCEGLI LA MOSSA");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -121,6 +137,14 @@ public class JFormLotta extends javax.swing.JFrame {
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
+
+        jLabel3.setText("jLabel3");
+
+        jLabel7.setText("jLabel7");
+
+        jLabel8.setText("jLabel8");
+
+        jLabel9.setText("jLabel9");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,27 +179,53 @@ public class JFormLotta extends javax.swing.JFrame {
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1)))
+                .addGap(221, 221, 221)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel9)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addComponent(jLabel6)
-                .addGap(50, 50, 50)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel9)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,6 +251,8 @@ public class JFormLotta extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+//        JPeer p = new JPeer();
+//        dati.MandaMossa("m;"+ dati.getListapokemonlotta().get(0).mossa1,  );
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -245,8 +297,14 @@ public class JFormLotta extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
