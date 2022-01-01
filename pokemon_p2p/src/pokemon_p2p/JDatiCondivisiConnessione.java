@@ -194,7 +194,7 @@ public class JDatiCondivisiConnessione {
         int contN = 0;  //contatore mosse normali
         int contPrimoTipo = 0; //contatore mosse primo tipo
         int contSecondoTipo = 0; //contatore mosse Secondo tipo
-        
+
         for (int i = 0; i < getListapokemonSelezionati().size(); i++) {
             temp = new ArrayList<JMoves>();
             for (int x = 0; x < getListamosse().size(); x++) {
@@ -216,7 +216,7 @@ public class JDatiCondivisiConnessione {
                     }
                 } else {
                     //in questo caso il pokemon ha 2 tipi
-                    if (!temp.contains(mossaPokemon) && mossaPokemon.type.equals("Normal") && contSecondoTipo < 1 && contPrimoTipo < 1) {
+                    if (!temp.contains(mossaPokemon) && contSecondoTipo < 1 && contPrimoTipo < 1) {
                         temp.add(mossaPokemon);
                         if (mossaPokemon.type.equals(getListapokemonSelezionati().get(i).type1)) {
                             contPrimoTipo++;
