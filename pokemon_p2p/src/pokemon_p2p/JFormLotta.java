@@ -56,13 +56,13 @@ public class JFormLotta extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //progressiveBar
         jProgressBar1.setMaximum(dati.getListapokemonlotta().get(0).pokemon.HP);
         jProgressBar1.setValue(dati.getListapokemonlotta().get(0).pokemon.HP);
         jProgressBar1.setForeground(Color.GREEN);
         jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
-        
+
         //bottoni
         jButton1.setText(dati.getListapokemonlotta().get(0).mossa1.ename);
         jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power);
@@ -74,27 +74,238 @@ public class JFormLotta extends javax.swing.JFrame {
         jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power);
 
     }
-    
-    private void initColorButton(JDatiCondivisiConnessione dati){
-        
+
+    private void initColorButton(JDatiCondivisiConnessione dati) {
+
         //colori in base al tipo delle mosse 
-        
-        //fuoco
-        if(dati.getListapokemonlotta().get(0).mossa1.type.equals("Fire")){
-            jButton1.setBackground(Color.RED);        
+        switch (dati.getListapokemonlotta().get(0).mossa1.type) {
+            case "Fire":
+                jButton1.setBackground(Color.RED);
+                break;
+            case "Water":
+                jButton1.setBackground(Color.CYAN);
+                break;
+            case "Flying":
+                jButton1.setBackground(Color.WHITE);
+                break;
+            case "Poison":
+                jButton1.setBackground(Color.PINK);
+                break;
+            case "Grass":
+                jButton1.setBackground(Color.GREEN);
+                break;
+            case "Fighting":
+                jButton1.setBackground(Color.ORANGE);
+                break;
+            case "Ice":
+                jButton1.setBackground(Color.CYAN);
+                break;
+            case "Electric":
+                jButton1.setBackground(Color.YELLOW);
+                break;
+            case "Ground":
+                jButton1.setBackground(Color.ORANGE);
+                break;
+            case "Bug":
+                jButton1.setBackground(Color.GREEN);
+                break;
+            case "Dark":
+                jButton1.setBackground(Color.BLACK);
+                jButton1.setForeground(Color.WHITE);
+                break;
+            case "Psychic":
+                jButton1.setBackground(Color.MAGENTA);
+                break;
+            case "Dragon":
+                jButton1.setBackground(Color.BLUE);
+                jButton1.setForeground(Color.WHITE);
+                break;
+            case "Ghost":
+                jButton1.setBackground(Color.BLUE);
+                jButton1.setForeground(Color.WHITE);
+                break;
+            case "Rock":
+                jButton1.setBackground(Color.ORANGE);
+                break;
+            case "Fairy":
+                jButton1.setBackground(Color.PINK);
+                break;
+            case "Steel":
+                jButton1.setBackground(Color.LIGHT_GRAY);
+                break;
         }
-        if(dati.getListapokemonlotta().get(0).mossa2.type.equals("Fire")){
-            jButton2.setBackground(Color.RED);        
-        }
-        if(dati.getListapokemonlotta().get(0).mossa3.type.equals("Fire")){
-            jButton3.setBackground(Color.RED);        
-        }
-        if(dati.getListapokemonlotta().get(0).mossa4.type.equals("Fire")){
-            jButton4.setBackground(Color.RED);        
+        
+        switch (dati.getListapokemonlotta().get(0).mossa2.type) {
+            case "Fire":
+                jButton2.setBackground(Color.RED);
+                break;
+            case "Water":
+                jButton2.setBackground(Color.CYAN);
+                break;
+            case "Flying":
+                jButton2.setBackground(Color.WHITE);
+                break;
+            case "Poison":
+                jButton2.setBackground(Color.PINK);
+                break;
+            case "Grass":
+                jButton2.setBackground(Color.GREEN);
+                break;
+            case "Fighting":
+                jButton2.setBackground(Color.ORANGE);
+                break;
+            case "Ice":
+                jButton2.setBackground(Color.CYAN);
+                break;
+            case "Electric":
+                jButton2.setBackground(Color.YELLOW);
+                break;
+            case "Ground":
+                jButton2.setBackground(Color.ORANGE);
+                break;
+            case "Bug":
+                jButton2.setBackground(Color.GREEN);
+                break;
+            case "Dark":
+                jButton2.setBackground(Color.BLACK);
+                jButton2.setForeground(Color.WHITE);
+                break;
+            case "Psychic":
+                jButton2.setBackground(Color.MAGENTA);
+                break;
+            case "Dragon":
+                jButton2.setBackground(Color.BLUE);
+                jButton2.setForeground(Color.WHITE);
+                break;
+            case "Ghost":
+                jButton2.setBackground(Color.BLUE);
+                jButton2.setForeground(Color.WHITE);
+                break;
+            case "Rock":
+                jButton2.setBackground(Color.ORANGE);
+                break;
+            case "Fairy":
+                jButton2.setBackground(Color.PINK);
+                break;
+            case "Steel":
+                jButton2.setBackground(Color.LIGHT_GRAY);
+                break;
         }
         
+        switch (dati.getListapokemonlotta().get(0).mossa3.type) {
+            case "Fire":
+                jButton3.setBackground(Color.RED);
+                break;
+            case "Water":
+                jButton3.setBackground(Color.CYAN);
+                break;
+            case "Flying":
+                jButton3.setBackground(Color.WHITE);
+                break;
+            case "Poison":
+                jButton3.setBackground(Color.PINK);
+                break;
+            case "Grass":
+                jButton3.setBackground(Color.GREEN);
+                break;
+            case "Fighting":
+                jButton3.setBackground(Color.ORANGE);
+                break;
+            case "Ice":
+                jButton3.setBackground(Color.CYAN);
+                break;
+            case "Electric":
+                jButton3.setBackground(Color.YELLOW);
+                break;
+            case "Ground":
+                jButton3.setBackground(Color.ORANGE);
+                break;
+            case "Bug":
+                jButton3.setBackground(Color.GREEN);
+                break;
+            case "Dark":
+                jButton3.setBackground(Color.BLACK);
+                jButton3.setForeground(Color.WHITE);
+                break;
+            case "Psychic":
+                jButton3.setBackground(Color.MAGENTA);
+                break;
+            case "Dragon":
+                jButton3.setBackground(Color.BLUE);
+                jButton3.setForeground(Color.WHITE);
+                break;
+            case "Ghost":
+                jButton3.setBackground(Color.BLUE);
+                jButton3.setForeground(Color.WHITE);
+                break;
+            case "Rock":
+                jButton3.setBackground(Color.ORANGE);
+                break;
+            case "Fairy":
+                jButton3.setBackground(Color.PINK);
+                break;
+            case "Steel":
+                jButton3.setBackground(Color.LIGHT_GRAY);
+                break;
+        }
         
-        
+        switch (dati.getListapokemonlotta().get(0).mossa4.type) {
+            case "Fire":
+                jButton4.setBackground(Color.RED);
+                break;
+            case "Water":
+                jButton4.setBackground(Color.CYAN);
+                break;
+            case "Flying":
+                jButton4.setBackground(Color.WHITE);
+                break;
+            case "Poison":
+                jButton4.setBackground(Color.PINK);
+                break;
+            case "Grass":
+                jButton4.setBackground(Color.GREEN);
+                break;
+            case "Fighting":
+                jButton4.setBackground(Color.ORANGE);
+                break;
+            case "Ice":
+                jButton4.setBackground(Color.CYAN);
+                break;
+            case "Electric":
+                jButton4.setBackground(Color.YELLOW);
+                break;
+            case "Ground":
+                jButton4.setBackground(Color.ORANGE);
+                break;
+            case "Bug":
+                jButton4.setBackground(Color.GREEN);
+                break;
+            case "Dark":
+                jButton4.setBackground(Color.BLACK);
+                jButton4.setForeground(Color.WHITE);
+                break;
+            case "Psychic":
+                jButton4.setBackground(Color.MAGENTA);
+                break;
+            case "Dragon":
+                jButton4.setBackground(Color.BLUE);
+                jButton4.setForeground(Color.WHITE);
+                break;
+            case "Ghost":
+                jButton4.setBackground(Color.BLUE);
+                jButton4.setForeground(Color.WHITE);
+                break;
+            case "Rock":
+                jButton4.setBackground(Color.ORANGE);
+                break;
+            case "Fairy":
+                jButton4.setBackground(Color.PINK);
+                break;
+            case "Steel":
+                jButton4.setBackground(Color.LIGHT_GRAY);
+                break;
+        }
+
     }
 
     /**
@@ -276,7 +487,7 @@ public class JFormLotta extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             // TODO add your handling code here:
-        //JPeer p = new JPeer();
+            //JPeer p = new JPeer();
             dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa1, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
