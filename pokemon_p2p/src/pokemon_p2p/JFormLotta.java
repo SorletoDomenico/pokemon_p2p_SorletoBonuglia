@@ -34,6 +34,7 @@ public class JFormLotta extends javax.swing.JFrame {
         this.dati = dati;
         initComponents();
         initPokemonInCampo(this.dati);
+        initColorButton(this.dati);
     }
 
     private JFormLotta() {
@@ -55,21 +56,45 @@ public class JFormLotta extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        //progressiveBar
         jProgressBar1.setMaximum(dati.getListapokemonlotta().get(0).pokemon.HP);
         jProgressBar1.setValue(dati.getListapokemonlotta().get(0).pokemon.HP);
         jProgressBar1.setForeground(Color.GREEN);
         jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
-
+        
+        //bottoni
         jButton1.setText(dati.getListapokemonlotta().get(0).mossa1.ename);
-        jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power);
+        jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power);
         jButton2.setText(dati.getListapokemonlotta().get(0).mossa2.ename);
-        jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa2.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa2.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa2.power);
+        jTextArea4.setText(dati.getListapokemonlotta().get(0).mossa2.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa2.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa2.power);
         jButton3.setText(dati.getListapokemonlotta().get(0).mossa3.ename);
-        jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa3.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa3.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa3.power);
+        jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa3.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa3.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa3.power);
         jButton4.setText(dati.getListapokemonlotta().get(0).mossa4.ename);
-        jTextArea4.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power);
+        jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power);
 
+    }
+    
+    private void initColorButton(JDatiCondivisiConnessione dati){
+        
+        //colori in base al tipo delle mosse 
+        
+        //fuoco
+        if(dati.getListapokemonlotta().get(0).mossa1.type.equals("Fire")){
+            jButton1.setBackground(Color.RED);        
+        }
+        if(dati.getListapokemonlotta().get(0).mossa2.type.equals("Fire")){
+            jButton2.setBackground(Color.RED);        
+        }
+        if(dati.getListapokemonlotta().get(0).mossa3.type.equals("Fire")){
+            jButton3.setBackground(Color.RED);        
+        }
+        if(dati.getListapokemonlotta().get(0).mossa4.type.equals("Fire")){
+            jButton4.setBackground(Color.RED);        
+        }
+        
+        
+        
     }
 
     /**
