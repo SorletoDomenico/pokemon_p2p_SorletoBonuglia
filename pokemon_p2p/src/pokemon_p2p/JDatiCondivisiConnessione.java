@@ -224,11 +224,10 @@ public class JDatiCondivisiConnessione {
                             contSecondoTipo++;
                         }
                     }
-
                 }
-                JPokemonLotta p = new JPokemonLotta(getListapokemonSelezionati().get(i), temp.get(0), temp.get(1), temp.get(2), temp.get(3));
-                listapokemonlotta.add(p);
             }
+            JPokemonLotta p = new JPokemonLotta(getListapokemonSelezionati().get(i), temp.get(0), temp.get(1), temp.get(2), temp.get(3));
+            listapokemonlotta.add(p);
         }
 
     }
