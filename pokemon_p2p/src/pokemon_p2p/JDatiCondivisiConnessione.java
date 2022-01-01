@@ -165,11 +165,15 @@ public class JDatiCondivisiConnessione {
                 if ((getListapokemonSelezionati().get(i).type1.equals(getListamosse().get(x).type) || getListamosse().get(x).type.equals(getListapokemonSelezionati().get(i).type2) || getListamosse().get(x).type.equals("Normal")) && !getListamosse().get(x).power.equals(0)) {
                     mossedelpokemon.add(getListamosse().get(x));
                 }
+                
+                
             }
             for (int m = 0; m < 4; m++) {
                 JMoves mossa = mossedelpokemon.get(r.nextInt(mossedelpokemon.size()));
                 if (!temp.contains(mossa)) {
                     temp.add(mossa);
+                }else{
+                m--;
                 }
             }
 
