@@ -140,7 +140,6 @@ public class JDatiCondivisiConnessione {
             if (Integer.parseInt(vect[0]) == pAvversario.getPorte()) {
                 temp = vect;
             }
-
         } while (true);
 
     }

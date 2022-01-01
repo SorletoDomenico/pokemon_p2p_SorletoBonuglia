@@ -60,7 +60,6 @@ public class JFormLotta extends javax.swing.JFrame {
         jProgressBar1.setValue(dati.getListapokemonlotta().get(0).pokemon.HP);
         jProgressBar1.setForeground(Color.GREEN);
         jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
-        
 
         jButton1.setText(dati.getListapokemonlotta().get(0).mossa1.ename);
         jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power);
@@ -250,9 +249,13 @@ public class JFormLotta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-//        JPeer p = new JPeer();
-//        dati.MandaMossa("m;"+ dati.getListapokemonlotta().get(0).mossa1,  );
+        try {
+            // TODO add your handling code here:
+        //JPeer p = new JPeer();
+            dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa1, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
+        } catch (IOException ex) {
+            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
