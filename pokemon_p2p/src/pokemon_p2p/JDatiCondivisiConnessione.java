@@ -210,7 +210,7 @@ public class JDatiCondivisiConnessione {
                     contN++;
                 }
                 if (getListapokemonSelezionati().get(i).type2.equals("")) {  // il pokemon ha un solo tipo
-                    if (!temp.contains(mossaPokemon) && mossaPokemon.type.equals("Normal") && contPrimoTipo < 2) {
+                    if (!temp.contains(mossaPokemon) && contPrimoTipo < 2) {
                         temp.add(mossaPokemon);
                         contPrimoTipo++;
                     }
