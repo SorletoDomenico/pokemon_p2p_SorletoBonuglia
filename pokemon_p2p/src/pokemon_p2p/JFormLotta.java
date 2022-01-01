@@ -5,6 +5,17 @@
  */
 package pokemon_p2p;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author sorleto_domenico
@@ -27,7 +38,19 @@ public class JFormLotta extends javax.swing.JFrame {
     
     private void initPokemonInCampo(JDatiCondivisiConnessione dati){
         jLabel1.setText(dati.getListapokemonlotta().get(0).pokemon.name);
-//        jProgressBar1.setValue(WIDTH);
+        
+        //immagine nella label2
+        String imagePath = dati.getListapokemonSelezionati().get(0).hires;
+        Image myPicture;
+        try {
+            myPicture = ImageIO.read(new File(imagePath));
+            Image newImage = myPicture.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT);
+            ImageIcon icon = new ImageIcon(newImage);
+            jLabel2.setIcon(icon);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
         jButton1.setText(dati.getListapokemonlotta().get(0).mossa1.ename);
         jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa1.type+"\n accurancy: "+dati.getListapokemonlotta().get(0).mossa1.accurancy+"\n power: "+dati.getListapokemonlotta().get(0).mossa1.power);
         jButton2.setText(dati.getListapokemonlotta().get(0).mossa2.ename);
@@ -64,6 +87,7 @@ public class JFormLotta extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,10 +126,6 @@ public class JFormLotta extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(225, 225, 225)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,6 +154,15 @@ public class JFormLotta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +171,9 @@ public class JFormLotta extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(167, 167, 167)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -213,6 +244,7 @@ public class JFormLotta extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
