@@ -132,10 +132,13 @@ public class JFormMenu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+      if(dati.getListapokemonSelezionati().size()==6){
       
-        JFormLotta jl = new JFormLotta(dati);
+      JFormLotta jl = new JFormLotta(dati);
         jl.setVisible(true);
         this.setVisible(false);
+      }
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
