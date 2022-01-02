@@ -488,7 +488,7 @@ public class JFormLotta extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //JPeer p = new JPeer();
-            dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa1, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
+            dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa1.id, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }

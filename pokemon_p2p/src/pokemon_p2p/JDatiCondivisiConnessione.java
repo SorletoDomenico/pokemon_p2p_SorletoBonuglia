@@ -74,6 +74,7 @@ public class JDatiCondivisiConnessione {
             data = new byte[1500];
             p = new DatagramPacket(data, data.length);
             s.receive(p);
+            c=true;
         }
 
     }
@@ -108,7 +109,7 @@ public class JDatiCondivisiConnessione {
             pAvversario.setNome(vect[3]);
             pAvversario.setPorte(Integer.parseInt(vect[2]));
             pAvversario.setindIp(vect[1]);
-
+            c=true;
             //manda
             data = new byte[1500];
             data = ("c;" + pNoi.getindIp() + ";" + pNoi.getPorte() + ";" + pNoi.getNome()).getBytes();

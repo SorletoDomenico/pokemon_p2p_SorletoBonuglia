@@ -137,7 +137,7 @@ public class JFormConnessione extends javax.swing.JFrame {
       }
     };
    threadManda.start();
-   System.out.println(threadManda.getName());
+   //System.out.println(threadManda.getName());
             
         
            
