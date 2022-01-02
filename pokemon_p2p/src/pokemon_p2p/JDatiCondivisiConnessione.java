@@ -194,7 +194,6 @@ public class JDatiCondivisiConnessione {
         int contN = 0;  //contatore mosse normali
         int contPrimoTipo = 0; //contatore mosse primo tipo
         int contSecondoTipo = 0; //contatore mosse Secondo tipo
-        
 
         for (int i = 0; i < getListapokemonSelezionati().size(); i++) {
             temp = new ArrayList<JMoves>();
@@ -206,37 +205,63 @@ public class JDatiCondivisiConnessione {
             for (int mossa = 0; mossa < 4; mossa++) {
                 JMoves mossaPokemon = mossedelpokemon.get(r.nextInt(mossedelpokemon.size()));  //prende mossa random da mossepokemon
                 Boolean aggiunto = false;
-                if (!temp.contains(mossaPokemon) && mossaPokemon.type.equals("Normal") && contN < 2) {
-                    temp.add(mossaPokemon);
-                    contN++;
-                    aggiunto= true;
-                }
-                if (getListapokemonSelezionati().get(i).type2.equals("")) {  // il pokemon ha un solo tipo
-                    if (!temp.contains(mossaPokemon) && contPrimoTipo < 2) {
+                if (getListapokemonSelezionati().get(i).type1.equals("Normal") && getListapokemonSelezionati().get(i).type2.equals("")) { //è solo di tipo normale
                         temp.add(mossaPokemon);
-                        contPrimoTipo++;
-                        aggiunto= true;
-                    }
+                        aggiunto = true;
                 } else {
-                    //in questo caso il pokemon ha 2 tipi
-                    if (!temp.contains(mossaPokemon) && contSecondoTipo < 1 && contPrimoTipo < 1) {
-                        temp.add(mossaPokemon);
-                        aggiunto= true;
-                        if (mossaPokemon.type.equals(getListapokemonSelezionati().get(i).type1)) {
-                            contPrimoTipo++;
-                        } else {
-                            contSecondoTipo++;
+                    if (getListapokemonSelezionati().get(i).type1.equals("Normal") && !getListapokemonSelezionati().get(i).type2.equals("")) {//sarà un pokemon di tipo normale e un altro tipo
+                        if (!temp.contains(mossaPokemon) && mossaPokemon.type.equals("Normal") && contN < 2) {
+                            temp.add(mossaPokemon);
+                            contN++;
+                            aggiunto = true;
+
                         }
-                        
+                        if (!temp.contains(mossaPokemon) && !mossaPokemon.type.equals("Normal") && contSecondoTipo < 2) {
+                            temp.add(mossaPokemon);
+                            contSecondoTipo++;
+                            aggiunto = true;
+                        }
+
+                    } else {
+                        if (!temp.contains(mossaPokemon) && mossaPokemon.type.equals("Normal") && contN < 2) {
+                            temp.add(mossaPokemon);
+                            contN++;
+                            aggiunto = true;
+                        }
+
+                        if (getListapokemonSelezionati().get(i).type2.equals("") && !mossaPokemon.type.equals("Normal")) {  // il pokemon ha un solo tipo
+                            if (!temp.contains(mossaPokemon) && contPrimoTipo < 2) {
+                                temp.add(mossaPokemon);
+                                contPrimoTipo++;
+                                aggiunto = true;
+                            }
+                        } else {
+                            //in questo caso il pokemon ha 2 tipi
+                            if (!temp.contains(mossaPokemon) && !mossaPokemon.type.equals("Normal") && ((contPrimoTipo < 1 && contSecondoTipo < 1) || (contPrimoTipo == 1 && contSecondoTipo == 0 && mossaPokemon.type.equals(getListapokemonSelezionati().get(i).type2)) || (contPrimoTipo == 0 && contSecondoTipo == 1 && mossaPokemon.type.equals(getListapokemonSelezionati().get(i).type1)))) {
+
+                                temp.add(mossaPokemon);
+                                aggiunto = true;
+                                if (mossaPokemon.type.equals(getListapokemonSelezionati().get(i).type1)) {
+                                    contPrimoTipo++;
+                                } else {
+                                    contSecondoTipo++;
+                                }
+
+                            }
+
+                        }
                     }
-                    
                 }
-                if(aggiunto==false){
-                     mossa--;
-                    }
+
+                if (aggiunto == false) {
+                    mossa--;
+                }
             }
             JPokemonLotta p = new JPokemonLotta(getListapokemonSelezionati().get(i), temp.get(0), temp.get(1), temp.get(2), temp.get(3));
             listapokemonlotta.add(p);
+            contN = 0;
+            contPrimoTipo = 0;
+            contSecondoTipo = 0;
         }
 
     }
