@@ -120,6 +120,8 @@ public class JFormLotta extends javax.swing.JFrame {
         jTextArea2.setEditable(false);
         jTextArea3.setEditable(false);
         jTextArea4.setEditable(false);
+        
+        this.getContentPane().setBackground(Color.LIGHT_GRAY);
 
         
     }
