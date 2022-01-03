@@ -360,8 +360,18 @@ public class JFormLotta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -371,6 +381,11 @@ public class JFormLotta extends javax.swing.JFrame {
         });
 
         jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setToolTipText("");
 
@@ -532,6 +547,41 @@ public class JFormLotta extends javax.swing.JFrame {
         
         initResetPokemon(dati);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            // TODO add your handling code here:
+            //JPeer p = new JPeer();
+            dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa2.id, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
+        } catch (IOException ex) {
+            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+         try {
+            // TODO add your handling code here:
+            //JPeer p = new JPeer();
+            dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa3.id, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
+        } catch (IOException ex) {
+            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         try {
+            // TODO add your handling code here:
+            //JPeer p = new JPeer();
+            dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa4.id, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
+        } catch (IOException ex) {
+            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
