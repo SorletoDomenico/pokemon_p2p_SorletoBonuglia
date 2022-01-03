@@ -40,7 +40,8 @@ public class JDatiCondivisiConnessione {
 
     public Boolean c;  //connessione
     public String[] temp;
-
+    
+   
     public JDatiCondivisiConnessione() {
 
         c = false;
@@ -264,8 +265,11 @@ public class JDatiCondivisiConnessione {
             contPrimoTipo = 0;
             contSecondoTipo = 0;
         }
-
     }
+    
+    
+       
+
 
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;

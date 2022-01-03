@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import org.json.simple.parser.ParseException;
 
 /**
@@ -137,6 +138,8 @@ public class JFormMenu extends javax.swing.JFrame {
       JFormLotta jl = new JFormLotta(dati);
         jl.setVisible(true);
         this.setVisible(false);
+      }else{
+          JOptionPane.showMessageDialog(null, "Prima devi creare la tua squadra!");
       }
         
         
