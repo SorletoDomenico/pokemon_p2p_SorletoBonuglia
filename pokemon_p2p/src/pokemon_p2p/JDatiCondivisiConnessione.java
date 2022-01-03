@@ -267,7 +267,10 @@ public class JDatiCondivisiConnessione {
         }
     }
     
-    
+    private Object turno = new Object();
+    public void setTurno(Boolean t){
+        
+    }
        
 
 

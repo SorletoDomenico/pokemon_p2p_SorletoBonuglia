@@ -90,6 +90,12 @@ public class JFormLotta extends javax.swing.JFrame {
         jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power);
   
     }
+    
+    private void attesaTurno(JDatiCondivisiConnessione dati){
+        
+        
+        
+    }
 
     private void initColorButton(JDatiCondivisiConnessione dati) {
 
