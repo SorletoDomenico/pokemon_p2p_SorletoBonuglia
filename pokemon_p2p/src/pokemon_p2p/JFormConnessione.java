@@ -9,6 +9,7 @@ import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -166,10 +167,15 @@ public class JFormConnessione extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:     
-        JFormMenu jfm = new JFormMenu(dati);
+        // TODO add your handling code here:
+//        if(dati.getC()){
+       JFormMenu jfm = new JFormMenu(dati);
         jfm.setVisible(true);
         setVisible(false);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Errore di connessione");
+//        }
+       
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
