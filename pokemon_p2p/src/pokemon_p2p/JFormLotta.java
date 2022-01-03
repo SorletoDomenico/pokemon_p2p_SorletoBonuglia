@@ -36,6 +36,7 @@ public class JFormLotta extends javax.swing.JFrame {
         this.dati = dati;
         initComponents();
         setPP();
+        initHP(this.dati);
         initPokemonInCampo(this.dati);
         initColorButton(this.dati);
         
@@ -52,8 +53,18 @@ public class JFormLotta extends javax.swing.JFrame {
             dati.getListapokemonlotta().remove(0);
 //            jLabel2.setIcon(null);
             setPP();
+            initHP(dati);
             initPokemonInCampo(dati);
         }
+        if(jProgressBar1.getValue() < ((50*jProgressBar1.getMaximum())/100)){
+        jProgressBar1.setForeground(Color.YELLOW);
+        
+        }
+        if(jProgressBar1.getValue() < ((20*jProgressBar1.getMaximum())/100)){
+        jProgressBar1.setForeground(Color.RED);
+        
+        }
+        
         
     }
     
@@ -65,7 +76,13 @@ public class JFormLotta extends javax.swing.JFrame {
        pp4= dati.getListapokemonlotta().get(0).mossa4.pp;
 
 }
+    private void initHP(JDatiCondivisiConnessione dati)
+    {
+    jProgressBar1.setValue(dati.getListapokemonlotta().get(0).pokemon.HP);
+        jProgressBar1.setForeground(Color.GREEN);
     
+    
+    }
 
     private void initPokemonInCampo(JDatiCondivisiConnessione dati) {
         jLabel1.setText(dati.getListapokemonlotta().get(0).pokemon.name);
@@ -87,8 +104,7 @@ public class JFormLotta extends javax.swing.JFrame {
  
         //progressiveBar
         jProgressBar1.setMaximum(dati.getListapokemonlotta().get(0).pokemon.HP);
-        jProgressBar1.setValue(dati.getListapokemonlotta().get(0).pokemon.HP);
-        jProgressBar1.setForeground(Color.GREEN);
+        
         jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
 
         
@@ -411,6 +427,7 @@ public class JFormLotta extends javax.swing.JFrame {
         });
 
         jLabel5.setToolTipText("");
+        jLabel5.setName(""); // NOI18N
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -574,8 +591,8 @@ public class JFormLotta extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         
-        jProgressBar1.setValue(0);
-        
+        jProgressBar1.setValue(jProgressBar1.getValue()-1);
+        jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
         initResetPokemon(dati);
     }//GEN-LAST:event_jButton5ActionPerformed
 
