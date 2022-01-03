@@ -264,6 +264,7 @@ public class JDatiCondivisiConnessione {
             contN = 0;
             contPrimoTipo = 0;
             contSecondoTipo = 0;
+            mossedelpokemon.clear();
         }
     }
     
