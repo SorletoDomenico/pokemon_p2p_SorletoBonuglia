@@ -317,8 +317,8 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //aggiunta pokemon selezionati ad una lista
-
-        if (dati.getListapokemonSelezionati().size() < 6) {
+   if(!Listapokemonfisica.isSelectionEmpty()){
+       if (dati.getListapokemonSelezionati().size() < 6) {
             dati.getListapokemonSelezionati().add(dati.getListapokemon().get(Listapokemonfisica.getSelectedIndex()));
             for (int i = 0; i < dati.getListapokemonSelezionati().size(); i++) {
                 if (i == 0) {
@@ -418,6 +418,10 @@ public class JFormSelezionaSquadra extends javax.swing.JFrame {
         }else{
         JOptionPane.showMessageDialog(null, "Hai già 6 pokemon!");
         }
+   }else{
+      JOptionPane.showMessageDialog(null, "Seleziona prima un pokemon");
+   }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

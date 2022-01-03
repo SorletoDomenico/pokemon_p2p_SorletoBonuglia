@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,12 +30,15 @@ public class JFormLotta extends javax.swing.JFrame {
      * Creates new form JFormLotta
      */
     JDatiCondivisiConnessione dati;
+    Integer pp1,pp2,pp3,pp4;
 
     public JFormLotta(JDatiCondivisiConnessione dati) {
         this.dati = dati;
         initComponents();
+        setPP();
         initPokemonInCampo(this.dati);
         initColorButton(this.dati);
+        
         
     }
 
@@ -47,12 +51,20 @@ public class JFormLotta extends javax.swing.JFrame {
         if(jProgressBar1.getValue()== 0){
             dati.getListapokemonlotta().remove(0);
 //            jLabel2.setIcon(null);
+            setPP();
             initPokemonInCampo(dati);
         }
         
     }
     
-    
+    private void setPP(){
+
+       pp1= dati.getListapokemonlotta().get(0).mossa1.pp;
+       pp2= dati.getListapokemonlotta().get(0).mossa2.pp;
+       pp3= dati.getListapokemonlotta().get(0).mossa3.pp;
+       pp4= dati.getListapokemonlotta().get(0).mossa4.pp;
+
+}
     
 
     private void initPokemonInCampo(JDatiCondivisiConnessione dati) {
@@ -79,15 +91,18 @@ public class JFormLotta extends javax.swing.JFrame {
         jProgressBar1.setForeground(Color.GREEN);
         jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
 
+        
+         //setPP();
+       
         //bottoni
         jButton1.setText(dati.getListapokemonlotta().get(0).mossa1.ename);
-        jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power);
+        jTextArea2.setText(dati.getListapokemonlotta().get(0).mossa1.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa1.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa1.power+ "\n pp: "+pp1+"/"+dati.getListapokemonlotta().get(0).mossa1.pp);
         jButton2.setText(dati.getListapokemonlotta().get(0).mossa2.ename);
-        jTextArea4.setText(dati.getListapokemonlotta().get(0).mossa2.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa2.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa2.power);
+        jTextArea4.setText(dati.getListapokemonlotta().get(0).mossa2.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa2.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa2.power+ "\n pp: "+pp2+"/"+dati.getListapokemonlotta().get(0).mossa2.pp);
         jButton3.setText(dati.getListapokemonlotta().get(0).mossa3.ename);
-        jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa3.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa3.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa3.power);
+        jTextArea1.setText(dati.getListapokemonlotta().get(0).mossa3.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa3.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa3.power+ "\n pp: "+pp3+"/"+dati.getListapokemonlotta().get(0).mossa3.pp);
         jButton4.setText(dati.getListapokemonlotta().get(0).mossa4.ename);
-        jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power);
+        jTextArea3.setText(dati.getListapokemonlotta().get(0).mossa4.type + "\n accurancy: " + dati.getListapokemonlotta().get(0).mossa4.accurancy + "\n power: " + dati.getListapokemonlotta().get(0).mossa4.power+ "\n pp: "+pp4+"/"+dati.getListapokemonlotta().get(0).mossa4.pp);
   
     }
     
@@ -364,6 +379,8 @@ public class JFormLotta extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 255, 102));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -537,13 +554,21 @@ public class JFormLotta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
+        if(pp3!=0){
+         try {
             // TODO add your handling code here:
             //JPeer p = new JPeer();
             dati.MandaMossa("m;" + dati.getListapokemonlotta().get(0).mossa1.id, dati.getpNoi().getindIp(), dati.getpNoi().getPorte());
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }
+        pp3--;
+        initPokemonInCampo(dati);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa3.ename+" non ha più pp");
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -556,7 +581,7 @@ public class JFormLotta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+       if(pp1!=0){ 
          try {
             // TODO add your handling code here:
             //JPeer p = new JPeer();
@@ -564,11 +589,16 @@ public class JFormLotta extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }
+         pp1--;
+        initPokemonInCampo(dati);
+       }else{
+        JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa1.ename+" non ha più pp");
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+        if(pp4!=0){ 
          try {
             // TODO add your handling code here:
             //JPeer p = new JPeer();
@@ -576,10 +606,16 @@ public class JFormLotta extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }
+         pp4--;
+        initPokemonInCampo(dati);
+                  }else{
+        JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa4.ename+" non ha più pp");
+       }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(pp2!=0){ 
          try {
             // TODO add your handling code here:
             //JPeer p = new JPeer();
@@ -587,6 +623,11 @@ public class JFormLotta extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
         }
+         pp2--;
+        initPokemonInCampo(dati);
+         }else{
+        JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa2.ename+" non ha più pp");
+       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
