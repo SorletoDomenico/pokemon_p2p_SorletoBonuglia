@@ -108,6 +108,7 @@ public class JFormLotta extends javax.swing.JFrame {
         String[] v = dati.getTemp();
         Integer dannoRicevuto=0;
         if ("p".equals(v[0])) {
+
             pA = dati.searchPokemon(Integer.parseInt(v[2].trim()));
             //immagine
             String imagePath = pA.hires;
