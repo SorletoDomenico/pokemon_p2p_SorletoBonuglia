@@ -32,6 +32,8 @@ public class JFormLotta extends javax.swing.JFrame {
      */
     JDatiCondivisiConnessione dati;
     Integer pp1, pp2, pp3, pp4;
+    public JPokemon pA;
+    public JMoves mA;
 
     public JFormLotta(JDatiCondivisiConnessione dati) throws IOException {
         this.dati = dati;
@@ -40,17 +42,11 @@ public class JFormLotta extends javax.swing.JFrame {
         initHP(this.dati);
         initPokemonInCampo(this.dati);
         initColorButton(this.dati);
-        Image myPicture = ImageIO.read(new File("Pokemonbattle.png"));
-        //Image newImage = myPicture.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT);
-        ImageIcon img = new ImageIcon(myPicture);
-        this.setIconImage(img.getImage());
-        //  this.getContentPane().getco;
-
         //richiamiamo metodo manda pokemon che abbiamo in campo
-        dati.manda("p;" + dati.getpNoi().getPorte() + ";" + dati.listapokemonlotta.get(0).pokemon.id.toString());
+        dati.manda("p;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
         //ricevo il pokemon dell'avversario
         dati.ricevi();
-        initPokemonAvversario();
+        initPokemonAvversario(this.dati);
 
     }
 
@@ -93,12 +89,11 @@ public class JFormLotta extends javax.swing.JFrame {
 
     }
 
-    private void initPokemonAvversario() {
-        JPokemon pA = null;
-        JMoves mA = null;
+    private void initPokemonAvversario(JDatiCondivisiConnessione dati) {
+        
 
         String[] v = dati.getTemp();
-        if (v[0] == "p") {
+        if ("p".equals(v[0])) {
             pA = dati.searchPokemon(Integer.parseInt(v[2]));
             //immagine
             String imagePath = pA.hires;
@@ -119,7 +114,7 @@ public class JFormLotta extends javax.swing.JFrame {
             jProgressBar2.setMaximum(pA.HP);
             jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
 
-        } else if (v[0] == "m") {
+        } else if ("m".equals(v[0])) {
             mA = dati.searchMossa(Integer.parseInt(v[2]));
         }
 

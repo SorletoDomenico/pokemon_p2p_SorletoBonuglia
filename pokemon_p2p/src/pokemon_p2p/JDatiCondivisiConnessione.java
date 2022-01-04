@@ -166,7 +166,7 @@ public class JDatiCondivisiConnessione {
             dividi = new String(riceviDati);
             vect = dividi.split(";");
             //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
-            if (Integer.parseInt(vect[1]) == pAvversario.getPorte()) {
+            if (Integer.parseInt(vect[1 ]) == pAvversario.getPorte()) {
                 temp = vect;
                 check = false; //in questo caso uscirà dal do-while quindi errore
             }
