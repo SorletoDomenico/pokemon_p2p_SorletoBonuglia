@@ -40,8 +40,7 @@ public class JDatiCondivisiConnessione {
 
     public Boolean c;  //connessione
     public String[] temp;
-    
-   
+
     public JDatiCondivisiConnessione() {
 
         c = false;
@@ -75,18 +74,24 @@ public class JDatiCondivisiConnessione {
             data = new byte[1500];
             p = new DatagramPacket(data, data.length);
             s.receive(p);
-            c=true;
+            c = true;
         }
 
     }
 
-    public void MandaMossa(String si, String ip, Integer port) throws UnknownHostException, IOException {
-        byte[] mandaDati = (pNoi.getPorte() + si).getBytes();
+//    public void MandaMossa(String si, String ip, Integer port) throws UnknownHostException, IOException {
+//        byte[] mandaDati = (pNoi.getPorte() + si).getBytes();
+//        DatagramPacket p = new DatagramPacket(mandaDati, mandaDati.length);
+//        p.setAddress(InetAddress.getByName(ip));
+//        p.setPort(port);
+//        s.send(p);
+//    }
+    public void manda(String sa) throws UnknownHostException, IOException {
+        byte[] mandaDati = (sa).getBytes();
         DatagramPacket p = new DatagramPacket(mandaDati, mandaDati.length);
-        p.setAddress(InetAddress.getByName(ip));
-        p.setPort(port);
+        p.setAddress(InetAddress.getByName(pAvversario.getindIp()));
+        p.setPort(pAvversario.getPorte());
         s.send(p);
-
     }
 
     public void riceviConnessione() throws SocketException, IOException {
@@ -110,7 +115,7 @@ public class JDatiCondivisiConnessione {
             pAvversario.setNome(vect[3]);
             pAvversario.setPorte(Integer.parseInt(vect[2]));
             pAvversario.setindIp(vect[1]);
-            c=true;
+            c = true;
             //manda
             data = new byte[1500];
             data = ("c;" + pNoi.getindIp() + ";" + pNoi.getPorte() + ";" + pNoi.getNome()).getBytes();
@@ -125,10 +130,30 @@ public class JDatiCondivisiConnessione {
 
     }
 
-    public void RiceviMossa() throws IOException {
+//    public void RiceviMossa() throws IOException {
+//        byte[] riceviDati;
+//        String[] vect;
+//        String dividi;
+//        do {
+//            //ricevo il pacchetto
+//            riceviDati = new byte[1500];
+//            DatagramPacket p;
+//            p = new DatagramPacket(riceviDati, riceviDati.length);
+//            s.receive(p);
+//            //dividiamo il nostro pacchetto
+//            dividi = new String(riceviDati);
+//            vect = dividi.split(";");
+//            //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
+//            if (Integer.parseInt(vect[0]) == pAvversario.getPorte()) {
+//                temp = vect;
+//            }
+//        } while (true);
+//    }
+    public void ricevi() throws IOException {
         byte[] riceviDati;
         String[] vect;
         String dividi;
+        Boolean check = true; //controllare se la porta è uguale, quinid continuerà il ciclo do-while
         do {
             //ricevo il pacchetto
             riceviDati = new byte[1500];
@@ -139,11 +164,11 @@ public class JDatiCondivisiConnessione {
             dividi = new String(riceviDati);
             vect = dividi.split(";");
             //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
-            if (Integer.parseInt(vect[0]) == pAvversario.getPorte()) {
+            if (Integer.parseInt(vect[1]) == pAvversario.getPorte()) {
                 temp = vect;
+                check = false; //in questo caso uscirà dal do-while quindi errore
             }
-        } while (true);
-
+        } while (check);
     }
 
     //parte gioco
@@ -208,8 +233,8 @@ public class JDatiCondivisiConnessione {
                 JMoves mossaPokemon = mossedelpokemon.get(r.nextInt(mossedelpokemon.size()));  //prende mossa random da mossepokemon
                 Boolean aggiunto = false;
                 if (getListapokemonSelezionati().get(i).type1.equals("Normal") && getListapokemonSelezionati().get(i).type2.equals("")) { //è solo di tipo normale
-                        temp.add(mossaPokemon);
-                        aggiunto = true;
+                    temp.add(mossaPokemon);
+                    aggiunto = true;
                 } else {
                     if (getListapokemonSelezionati().get(i).type1.equals("Normal") && !getListapokemonSelezionati().get(i).type2.equals("")) {//sarà un pokemon di tipo normale e un altro tipo
                         if (!temp.contains(mossaPokemon) && mossaPokemon.type.equals("Normal") && contN < 2) {
@@ -267,13 +292,12 @@ public class JDatiCondivisiConnessione {
             mossedelpokemon.clear();
         }
     }
-    
-    private Object turno = new Object();
-    public void setTurno(Boolean t){
-        
-    }
-       
 
+    private Object turno = new Object();
+
+    public void setTurno(Boolean t) {
+
+    }
 
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
