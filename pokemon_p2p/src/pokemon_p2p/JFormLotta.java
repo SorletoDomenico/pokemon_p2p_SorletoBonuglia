@@ -32,7 +32,6 @@ public class JFormLotta extends javax.swing.JFrame {
      */
     JDatiCondivisiConnessione dati;
     Integer pp1, pp2, pp3, pp4;
-     
 
     public JFormLotta(JDatiCondivisiConnessione dati) throws IOException {
         this.dati = dati;
@@ -41,20 +40,19 @@ public class JFormLotta extends javax.swing.JFrame {
         initHP(this.dati);
         initPokemonInCampo(this.dati);
         initColorButton(this.dati);
-        Image myPicture=ImageIO.read(new File("Pokemonbattle.png"));
+        Image myPicture = ImageIO.read(new File("Pokemonbattle.png"));
         //Image newImage = myPicture.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_DEFAULT);
-            ImageIcon img = new ImageIcon(myPicture);
-            this.setIconImage(img.getImage());
-      //  this.getContentPane().getco;
-      
-      //richiamiamo metodo manda pokemon che abbiamo in campo
-      dati.manda(dati.listapokemonlotta.get(0).pokemon.id.toString());  
-      //ricevo il pokemon dell'avversario
-      dati.ricevi();
+        ImageIcon img = new ImageIcon(myPicture);
+        this.setIconImage(img.getImage());
+        //  this.getContentPane().getco;
+
+        //richiamiamo metodo manda pokemon che abbiamo in campo
+        dati.manda("p;" + dati.getpNoi().getPorte() + ";" + dati.listapokemonlotta.get(0).pokemon.id.toString());
+        //ricevo il pokemon dell'avversario
+        dati.ricevi();
+        initPokemonAvversario();
 
     }
-    
-    
 
     private JFormLotta() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -94,10 +92,37 @@ public class JFormLotta extends javax.swing.JFrame {
         jProgressBar1.setForeground(Color.GREEN);
 
     }
-    
-    private void initPokemonAvversario(){
-        
-        
+
+    private void initPokemonAvversario() {
+        JPokemon pA = null;
+        JMoves mA = null;
+
+        String[] v = dati.getTemp();
+        if (v[0] == "p") {
+            pA = dati.searchPokemon(Integer.parseInt(v[2]));
+            //immagine
+            String imagePath = pA.hires;
+            Image myPicture;
+            try {
+                myPicture = ImageIO.read(new File(imagePath));
+                Image newImage = myPicture.getScaledInstance(jLabel7.getWidth(), jLabel7.getHeight(), Image.SCALE_DEFAULT);
+                ImageIcon icon = new ImageIcon(newImage);
+                jLabel7.setIcon(icon);
+            } catch (IOException ex) {
+                Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //nome pokemon
+            jLabel9.setText(pA.name);
+
+            //progressBar
+            jProgressBar2.setMaximum(pA.HP);
+            jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+
+        } else if (v[0] == "m") {
+            mA = dati.searchMossa(Integer.parseInt(v[2]));
+        }
+
     }
 
     private void initPokemonInCampo(JDatiCondivisiConnessione dati) {
@@ -137,10 +162,7 @@ public class JFormLotta extends javax.swing.JFrame {
         jTextArea2.setEditable(false);
         jTextArea3.setEditable(false);
         jTextArea4.setEditable(false);
-        
-        
-    
-        
+
     }
 
     private void attesaTurno(JDatiCondivisiConnessione dati) {
@@ -425,7 +447,6 @@ public class JFormLotta extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -495,9 +516,6 @@ public class JFormLotta extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setLabelFor(this);
-        jLabel10.setText("jLabel10");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -555,37 +573,29 @@ public class JFormLotta extends javax.swing.JFrame {
                         .addComponent(jLabel8))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(455, 455, 455)
-                        .addComponent(jButton5)
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel10)))
+                        .addComponent(jButton5)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jLabel10))
+                .addComponent(jButton5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -730,7 +740,6 @@ public class JFormLotta extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

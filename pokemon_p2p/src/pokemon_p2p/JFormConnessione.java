@@ -173,7 +173,7 @@ public class JFormConnessione extends javax.swing.JFrame {
         jfm.setVisible(true);
         setVisible(false);
         }else{
-            JOptionPane.showMessageDialog(null, "Errore di connessione");
+            JOptionPane.showMessageDialog(null, "Prima devi connetterti all'avversario");
         }     
     }//GEN-LAST:event_jButton3ActionPerformed
 

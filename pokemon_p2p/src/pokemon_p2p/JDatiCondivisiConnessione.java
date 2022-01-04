@@ -53,6 +53,8 @@ public class JDatiCondivisiConnessione {
         } catch (SocketException ex) {
             Logger.getLogger(JDatiCondivisiConnessione.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
 
     public void mandaConnessione(String ip, Integer port) throws SocketException, IOException {
@@ -292,12 +294,32 @@ public class JDatiCondivisiConnessione {
             mossedelpokemon.clear();
         }
     }
-
-    private Object turno = new Object();
-
-    public void setTurno(Boolean t) {
-
+    
+    public JPokemon searchPokemon(int idAvversario){
+        JPokemon p = null;
+        for(JPokemon p2: listapokemon){
+            if(p2.id.equals(idAvversario)){
+                p = p2;
+            }
+        }   
+        return p;   
     }
+    
+    public JMoves searchMossa(int idAvversario){
+        JMoves m = null;
+        for(JMoves m2: listamosse){
+            if(m2.id.equals(idAvversario)){
+                m = m2;
+            }
+        }   
+        return m;
+    }
+
+    //private Object turno = new Object();
+
+//    public void setTurno(Boolean t) {
+//
+//    }
 
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
