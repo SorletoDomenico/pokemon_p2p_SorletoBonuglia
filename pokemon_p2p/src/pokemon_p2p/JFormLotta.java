@@ -94,7 +94,7 @@ public class JFormLotta extends javax.swing.JFrame {
 
         String[] v = dati.getTemp();
         if ("p".equals(v[0])) {
-            pA = dati.searchPokemon(Integer.parseInt(v[2]));
+            pA = dati.searchPokemon(Integer.parseInt(v[2].trim()));
             //immagine
             String imagePath = pA.hires;
             Image myPicture;
@@ -115,7 +115,7 @@ public class JFormLotta extends javax.swing.JFrame {
             jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
 
         } else if ("m".equals(v[0])) {
-            mA = dati.searchMossa(Integer.parseInt(v[2]));
+            mA = dati.searchMossa(Integer.parseInt(v[2].trim()));
         }
 
     }

@@ -47,14 +47,14 @@ public class JDatiCondivisiConnessione {
         pNoi = new JPeer();
         pAvversario = new JPeer();
         pNoi.setPorte(667);
+        pNoi.setindIp("82.50.50.190");
 
         try {
             s = new DatagramSocket(pNoi.getPorte());
         } catch (SocketException ex) {
             Logger.getLogger(JDatiCondivisiConnessione.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     public void mandaConnessione(String ip, Integer port) throws SocketException, IOException {
@@ -76,6 +76,17 @@ public class JDatiCondivisiConnessione {
             data = new byte[1500];
             p = new DatagramPacket(data, data.length);
             s.receive(p);
+
+            //salvo i dati
+            String[] vect;
+            String str = new String(data);
+            vect = str.split(";"); //c;ip;porta;nome
+
+            //salvo dati
+            pAvversario.setNome(vect[3]);
+            pAvversario.setPorte(Integer.parseInt(vect[2]));
+            pAvversario.setindIp(vect[1]);
+
             c = true;
         }
 
@@ -166,7 +177,7 @@ public class JDatiCondivisiConnessione {
             dividi = new String(riceviDati);
             vect = dividi.split(";");
             //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
-            if (Integer.parseInt(vect[1 ]) == pAvversario.getPorte()) {
+            if (Integer.parseInt(vect[1]) == pAvversario.getPorte()) {
                 temp = vect;
                 check = false; //in questo caso uscirà dal do-while quindi errore
             }
@@ -294,33 +305,31 @@ public class JDatiCondivisiConnessione {
             mossedelpokemon.clear();
         }
     }
-    
-    public JPokemon searchPokemon(int idAvversario){
+
+    public JPokemon searchPokemon(int idAvversario) {
         JPokemon p = null;
-        for(JPokemon p2: listapokemon){
-            if(p2.id.equals(idAvversario)){
+        for (JPokemon p2 : listapokemon) {
+            if (p2.id.equals(idAvversario)) {
                 p = p2;
             }
-        }   
-        return p;   
+        }
+        return p;
     }
-    
-    public JMoves searchMossa(int idAvversario){
+
+    public JMoves searchMossa(int idAvversario) {
         JMoves m = null;
-        for(JMoves m2: listamosse){
-            if(m2.id.equals(idAvversario)){
+        for (JMoves m2 : listamosse) {
+            if (m2.id.equals(idAvversario)) {
                 m = m2;
             }
-        }   
+        }
         return m;
     }
 
     //private Object turno = new Object();
-
 //    public void setTurno(Boolean t) {
 //
 //    }
-
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
     }
