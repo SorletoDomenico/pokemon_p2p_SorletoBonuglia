@@ -135,9 +135,15 @@ public class JFormMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
       if(dati.getListapokemonSelezionati().size()==6){
       
-      JFormLotta jl = new JFormLotta(dati);
-        jl.setVisible(true);
+      JFormLotta jl;
+          try {
+              jl = new JFormLotta(dati);
+              jl.setVisible(true);
         this.setVisible(false);
+          } catch (IOException ex) {
+              Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
       }else{
           JOptionPane.showMessageDialog(null, "Prima devi creare la tua squadra!");
       }

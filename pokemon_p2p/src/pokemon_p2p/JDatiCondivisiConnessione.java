@@ -47,7 +47,7 @@ public class JDatiCondivisiConnessione {
         c = false;
         pNoi = new JPeer();
         pAvversario = new JPeer();
-        pNoi.setPorte(666);
+        pNoi.setPorte(667);
 
         try {
             s = new DatagramSocket(pNoi.getPorte());
