@@ -90,7 +90,6 @@ public class JFormLotta extends javax.swing.JFrame {
     }
 
     private void initPokemonAvversario(JDatiCondivisiConnessione dati) {
-        
 
         String[] v = dati.getTemp();
         if ("p".equals(v[0])) {
@@ -618,19 +617,24 @@ public class JFormLotta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (pp3 != 0) {
-            try {
-                // TODO add your handling code here:
-                //JPeer p = new JPeer();
-                dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa1.id);
-            } catch (IOException ex) {
-                Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (dati.getTurno() == true) {
+            if (pp3 != 0) {
+                try {
+                    // TODO add your handling code here:
+                    //JPeer p = new JPeer();
+                    dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa1.id);
+                    dati.setTurno(false);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                pp3--;
+                initPokemonInCampo(dati);
+            } else {
+                JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa3.ename + " non ha più pp");
             }
-            pp3--;
-            initPokemonInCampo(dati);
-        } else {
-            JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa3.ename + " non ha più pp");
         }
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -644,53 +648,69 @@ public class JFormLotta extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (pp1 != 0) {
-            try {
-                // TODO add your handling code here:
-                //JPeer p = new JPeer();
-                dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa2.id);
-            } catch (IOException ex) {
-                Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (dati.getTurno() == true) {
+            if (pp1 != 0) {
+                try {
+                    // TODO add your handling code here:
+                    //JPeer p = new JPeer();
+                    dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa2.id);
+                    dati.setTurno(false);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                pp1--;
+                initPokemonInCampo(dati);
+            } else {
+                JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa1.ename + " non ha più pp");
             }
-            pp1--;
-            initPokemonInCampo(dati);
-        } else {
-            JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa1.ename + " non ha più pp");
         }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if (pp4 != 0) {
-            try {
-                // TODO add your handling code here:
-                //JPeer p = new JPeer();
-                dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa3.id);
-            } catch (IOException ex) {
-                Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+        if (dati.getTurno() == true) {
+            if (pp4 != 0) {
+                try {
+                    // TODO add your handling code here:
+                    //JPeer p = new JPeer();
+                    dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa3.id);
+                    dati.setTurno(false);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                pp4--;
+                initPokemonInCampo(dati);
+            } else {
+                JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa4.ename + " non ha più pp");
             }
-            pp4--;
-            initPokemonInCampo(dati);
-        } else {
-            JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa4.ename + " non ha più pp");
         }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (pp2 != 0) {
-            try {
-                // TODO add your handling code here:
-                //JPeer p = new JPeer();
-                dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa4.id);
-            } catch (IOException ex) {
-                Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (dati.getTurno() == true) {
+            if (pp2 != 0) {
+                try {
+                    // TODO add your handling code here:
+                    //JPeer p = new JPeer();
+                    dati.manda("m;" + dati.getListapokemonlotta().get(0).mossa4.id);
+                    dati.setTurno(false);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                pp2--;
+                initPokemonInCampo(dati);
+            } else {
+                JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa2.ename + " non ha più pp");
             }
-            pp2--;
-            initPokemonInCampo(dati);
-        } else {
-            JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa2.ename + " non ha più pp");
         }
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

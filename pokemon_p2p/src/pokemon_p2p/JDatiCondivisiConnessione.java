@@ -9,6 +9,7 @@ import java.awt.List;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.Math.random;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -40,6 +41,8 @@ public class JDatiCondivisiConnessione {
 
     public Boolean c;  //connessione
     public String[] temp;
+
+    public Boolean turno;
 
     public JDatiCondivisiConnessione() {
 
@@ -326,10 +329,28 @@ public class JDatiCondivisiConnessione {
         return m;
     }
 
-    //private Object turno = new Object();
-//    public void setTurno(Boolean t) {
-//
-//    }
+    public void ChiInizia() throws IOException {
+
+        Random r = new Random();
+        Integer n;
+        boolean finito = false;
+        do {
+            n = r.nextInt(2);
+            manda("t;" + pNoi.getPorte().toString() + ";" + n.toString());
+            ricevi();
+            if (temp[0] == "t") {
+                if (n == 1 && Integer.parseInt(temp[2]) == 0) {
+                    turno = true;
+                    finito = true;
+                } else if (n == 0 && Integer.parseInt(temp[2]) == 1) {
+                    turno = false;
+                    finito = true;
+                }
+            }
+        } while (!finito);
+
+    }
+
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
     }
@@ -365,5 +386,15 @@ public class JDatiCondivisiConnessione {
     public void setTemp(String[] temp) {
         this.temp = temp;
     }
+
+    public Boolean getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Boolean turno) {
+        this.turno = turno;
+    }
+    
+    
 
 }
