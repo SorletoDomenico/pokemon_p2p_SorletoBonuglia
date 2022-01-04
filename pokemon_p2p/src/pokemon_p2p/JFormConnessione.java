@@ -168,14 +168,13 @@ public class JFormConnessione extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-//        if(dati.getC()){
+        if(dati.getC()){
        JFormMenu jfm = new JFormMenu(dati);
         jfm.setVisible(true);
         setVisible(false);
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Errore di connessione");
-//        }
-       
+        }else{
+            JOptionPane.showMessageDialog(null, "Errore di connessione");
+        }     
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

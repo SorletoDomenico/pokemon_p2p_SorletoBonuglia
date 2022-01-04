@@ -176,7 +176,7 @@ public class JDatiCondivisiConnessione {
         JSONParser parser = new JSONParser();
         JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
         JSONArray am = (JSONArray) parser.parse(new FileReader("moves.json"));
-        ArrayList<JPokemon> temp = new ArrayList<JPokemon>();
+        ArrayList<JPokemon> temp1 = new ArrayList<JPokemon>();
         ArrayList<JMoves> temp2 = new ArrayList<JMoves>();
 
         for (Object obj : a) {
@@ -192,7 +192,7 @@ public class JDatiCondivisiConnessione {
             String sprite = (String) Pokemon.get("sprite");
             String hires = (String) Pokemon.get("hires");
             JPokemon p = new JPokemon(id, name, type1, type2, hp, description, sprite, hires);
-            temp.add(p);
+            temp1.add(p);
         }
 
         for (Object obj : am) {
@@ -208,7 +208,7 @@ public class JDatiCondivisiConnessione {
             temp2.add(m);
         }
 
-        listapokemon = temp;
+        listapokemon = temp1;
         listamosse = temp2;
     }
 
