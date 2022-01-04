@@ -50,7 +50,7 @@ public class JDatiCondivisiConnessione {
         pNoi = new JPeer();
         pAvversario = new JPeer();
         pNoi.setPorte(667);
-        pNoi.setindIp("82.50.50.190");
+        pNoi.setindIp("localhost");
 
         try {
             s = new DatagramSocket(pNoi.getPorte());
@@ -338,11 +338,11 @@ public class JDatiCondivisiConnessione {
             n = r.nextInt(2);
             manda("t;" + pNoi.getPorte().toString() + ";" + n.toString());
             ricevi();
-            if (temp[0] == "t") {
-                if (n == 1 && Integer.parseInt(temp[2]) == 0) {
+            if ("t".equals(temp[0])) {
+                if (n == 1 && Integer.parseInt(temp[2].trim()) == 0) {
                     turno = true;
                     finito = true;
-                } else if (n == 0 && Integer.parseInt(temp[2]) == 1) {
+                } else if (n == 0 && Integer.parseInt(temp[2].trim()) == 1) {
                     turno = false;
                     finito = true;
                 }
