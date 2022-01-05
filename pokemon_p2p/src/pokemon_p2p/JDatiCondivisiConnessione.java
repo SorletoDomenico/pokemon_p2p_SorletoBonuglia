@@ -182,7 +182,7 @@ public class JDatiCondivisiConnessione {
             //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
             if (Integer.parseInt(vect[1]) == pAvversario.getPorte()) {
                 temp = vect;
-                check = false; //in questo caso uscirà dal do-while quindi errore
+                check = false; //in questo caso uscirà dal do-while 
             }
         } while (check);
     }
