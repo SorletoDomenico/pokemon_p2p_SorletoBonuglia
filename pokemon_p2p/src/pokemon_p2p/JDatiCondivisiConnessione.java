@@ -95,13 +95,7 @@ public class JDatiCondivisiConnessione {
 
     }
 
-//    public void MandaMossa(String si, String ip, Integer port) throws UnknownHostException, IOException {
-//        byte[] mandaDati = (pNoi.getPorte() + si).getBytes();
-//        DatagramPacket p = new DatagramPacket(mandaDati, mandaDati.length);
-//        p.setAddress(InetAddress.getByName(ip));
-//        p.setPort(port);
-//        s.send(p);
-//    }
+
     public void manda(String sa) throws UnknownHostException, IOException {
         byte[] mandaDati = (sa).getBytes();
         DatagramPacket p = new DatagramPacket(mandaDati, mandaDati.length);
@@ -146,25 +140,7 @@ public class JDatiCondivisiConnessione {
 
     }
 
-//    public void RiceviMossa() throws IOException {
-//        byte[] riceviDati;
-//        String[] vect;
-//        String dividi;
-//        do {
-//            //ricevo il pacchetto
-//            riceviDati = new byte[1500];
-//            DatagramPacket p;
-//            p = new DatagramPacket(riceviDati, riceviDati.length);
-//            s.receive(p);
-//            //dividiamo il nostro pacchetto
-//            dividi = new String(riceviDati);
-//            vect = dividi.split(";");
-//            //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
-//            if (Integer.parseInt(vect[0]) == pAvversario.getPorte()) {
-//                temp = vect;
-//            }
-//        } while (true);
-//    }
+
     public void ricevi() throws IOException {
         byte[] riceviDati;
         String[] vect;
@@ -203,7 +179,7 @@ public class JDatiCondivisiConnessione {
             String name = (String) Pokemon.get("name");
             String type1 = (String) Pokemon.get("type1");
             String type2 = (String) Pokemon.get("type2");
-            Integer hp = Integer.parseInt((String) Pokemon.get("HP"));
+            Integer hp = Integer.parseInt((String) Pokemon.get("HP")) * 3;
             String description = (String) Pokemon.get("description");
             String sprite = (String) Pokemon.get("sprite");
             String hires = (String) Pokemon.get("hires");

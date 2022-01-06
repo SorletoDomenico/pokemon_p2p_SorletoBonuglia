@@ -194,57 +194,53 @@ public class JFormLotta extends javax.swing.JFrame {
     private void attesaTurno(JDatiCondivisiConnessione dati) {
         blocca(false);
 
-        Thread Tattesa = new Thread("New Thread") {
-            public void run() {
-                do {
-                    String[] v = dati.getTemp();
-                    try {
-                        dati.ricevi();
-                    } catch (IOException ex) {
-                        Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    if ("p".equals(v[0])) {
-
-                        pA = dati.searchPokemon(Integer.parseInt(v[2].trim()));
-                        //immagine
-                        String imagePath = pA.hires;
-                        Image myPicture;
-                        try {
-                            myPicture = ImageIO.read(new File(imagePath));
-                            Image newImage = myPicture.getScaledInstance(jLabel7.getWidth(), jLabel7.getHeight(), Image.SCALE_DEFAULT);
-                            ImageIcon icon = new ImageIcon(newImage);
-                            jLabel7.setIcon(icon);
-                        } catch (IOException ex) {
-                            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                        //nome pokemon
-                        jLabel9.setText(pA.name);
-
-                        //progressBar
-                        jProgressBar2.setMaximum(pA.HP);
-
-                        jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
-
-                    }
-                    
-                    if ("m".equals(v[0])) {
-                        mA = dati.searchMossa(Integer.parseInt(v[2].trim()));
-                        jProgressBar1.setValue(jProgressBar1.getValue() - mA.power); //mA.Power
-                        dati.setTurno(true);
-                        try {
-                            initResetPokemon(dati);
-                        } catch (IOException ex) {
-                            Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                } while (!dati.getTurno());
-                blocca(true);
-                // initPokemonInCampo(dati);
-                //  initPokemonAvversario(dati);
+        do {
+            try {
+                dati.ricevi();
+            } catch (IOException ex) {
+                Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
             }
-        };
-        Tattesa.start();
+            String[] v = dati.getTemp();
+            if ("p".equals(v[0])) {
+
+                pA = dati.searchPokemon(Integer.parseInt(v[2].trim()));
+                //immagine
+                String imagePath = pA.hires;
+                Image myPicture;
+                try {
+                    myPicture = ImageIO.read(new File(imagePath));
+                    Image newImage = myPicture.getScaledInstance(jLabel7.getWidth(), jLabel7.getHeight(), Image.SCALE_DEFAULT);
+                    ImageIcon icon = new ImageIcon(newImage);
+                    jLabel7.setIcon(icon);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                //nome pokemon
+                jLabel9.setText(pA.name);
+
+                //progressBar
+                jProgressBar2.setMaximum(pA.HP);
+
+                jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+
+            }
+
+            if ("m".equals(v[0])) {
+                mA = dati.searchMossa(Integer.parseInt(v[2].trim()));
+                jProgressBar1.setValue(jProgressBar1.getValue() - mA.power); //mA.Power
+                dati.setTurno(true);
+                try {
+                    initResetPokemon(dati);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } while (!dati.getTurno());
+        blocca(true);
+        // initPokemonInCampo(dati);
+        //  initPokemonAvversario(dati);
+
     }
 
     private void initColorButton(JDatiCondivisiConnessione dati) {
@@ -688,21 +684,18 @@ public class JFormLotta extends javax.swing.JFrame {
         if (dati.getTurno() == true) {
             if (pp3 != 0) {
                 try {
-
-                    // TODO add your handling code here:
-                    //JPeer p = new JPeer();
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa3.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa3.id);
 
                     dati.setTurno(false);
-                     pp3--;
-                initPokemonInCampo(dati);
+                    pp3--;
+                    initPokemonInCampo(dati);
                     attesaTurno(dati);
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
             } else {
                 JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa3.ename + " non ha più pp");
             }
