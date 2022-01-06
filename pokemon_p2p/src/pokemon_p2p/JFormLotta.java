@@ -108,7 +108,7 @@ public class JFormLotta extends javax.swing.JFrame {
     private void initPokemonAvversario(JDatiCondivisiConnessione dati) {
 
         String[] v = dati.getTemp();
-        Integer dannoRicevuto = 0;
+        
         if ("p".equals(v[0])) {
 
             pA = dati.searchPokemon(Integer.parseInt(v[2].trim()));
@@ -132,7 +132,6 @@ public class JFormLotta extends javax.swing.JFrame {
 
             jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
 
-        
         }
 
     }
@@ -195,8 +194,7 @@ public class JFormLotta extends javax.swing.JFrame {
 
     private void attesaTurno(JDatiCondivisiConnessione dati) {
         blocca(false);
-        
-        //Integer dannoRicevuto = 0;
+
         Thread Tattesa = new Thread("New Thread") {
             public void run() {
                 do {
@@ -667,14 +665,16 @@ public class JFormLotta extends javax.swing.JFrame {
         if (dati.getTurno() == true) {
             if (pp3 != 0) {
                 try {
-                    
+
                     // TODO add your handling code here:
                     //JPeer p = new JPeer();
-                    dati.manda("m;" +dati.getpNoi().getPorte()+";"+ dati.getListapokemonlotta().get(0).mossa1.id);
+                    jProgressBar2.setValue(jProgressBar2.getValue()-dati.getListapokemonlotta().get(0).mossa1.power);
+                    jLabel8.setText(jProgressBar2.getValue()+"/"+jProgressBar2.getMaximum());
+                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa1.id);
                     dati.ricevi();
                     initPokemonAvversario(dati);
-//                    dati.setTurno(false);
-//                    attesaTurno(dati);
+                    dati.setTurno(false);
+                    attesaTurno(dati);
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -694,11 +694,13 @@ public class JFormLotta extends javax.swing.JFrame {
                 try {
                     // TODO add your handling code here:
                     //JPeer p = new JPeer();
-                    dati.manda("m;" +dati.getpNoi().getPorte()+";"+  dati.getListapokemonlotta().get(0).mossa2.id);
+                    jProgressBar2.setValue(jProgressBar2.getValue()-dati.getListapokemonlotta().get(0).mossa2.power);
+                    jLabel8.setText(jProgressBar2.getValue()+"/"+jProgressBar2.getMaximum());
+                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa2.id);
                     dati.ricevi();
                     initPokemonAvversario(dati);
-//                    dati.setTurno(false);
-//                    attesaTurno(dati);
+                    dati.setTurno(false);
+                    attesaTurno(dati);
 
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
@@ -720,11 +722,13 @@ public class JFormLotta extends javax.swing.JFrame {
                 try {
                     // TODO add your handling code here:
                     //JPeer p = new JPeer();
-                    dati.manda("m;" +dati.getpNoi().getPorte()+";"+  dati.getListapokemonlotta().get(0).mossa3.id);
+                    jProgressBar2.setValue(jProgressBar2.getValue()-dati.getListapokemonlotta().get(0).mossa3.power);
+                    jLabel8.setText(jProgressBar2.getValue()+"/"+jProgressBar2.getMaximum());
+                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa3.id);
                     dati.ricevi();
                     initPokemonAvversario(dati);
-//                    dati.setTurno(false);
-//                    attesaTurno(dati);
+                    dati.setTurno(false);
+                    attesaTurno(dati);
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -745,11 +749,13 @@ public class JFormLotta extends javax.swing.JFrame {
                 try {
                     // TODO add your handling code here:
                     //JPeer p = new JPeer();
-                    dati.manda("m;" +dati.getpNoi().getPorte()+";"+  dati.getListapokemonlotta().get(0).mossa4.id);
+                    jProgressBar2.setValue(jProgressBar2.getValue()-dati.getListapokemonlotta().get(0).mossa4.power);
+                    jLabel8.setText(jProgressBar2.getValue()+"/"+jProgressBar2.getMaximum());
+                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa4.id);
                     dati.ricevi();
                     initPokemonAvversario(dati);
-//                    dati.setTurno(false);
-//                    attesaTurno(dati);
+                    dati.setTurno(false);
+                    attesaTurno(dati);
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
