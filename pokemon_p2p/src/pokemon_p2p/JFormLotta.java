@@ -49,7 +49,7 @@ public class JFormLotta extends javax.swing.JFrame {
 
         initPokemonAvversario(this.dati);
         initHPAvversario(this.dati);
-        dati.setTurno(true);
+        // dati.setTurno(true);
         dati.ChiInizia();
         if (dati.getTurno() == false) {
             attesaTurno(dati);
@@ -221,7 +221,8 @@ public class JFormLotta extends javax.swing.JFrame {
 
                 //progressBar
                 jProgressBar2.setMaximum(pA.HP);
-
+                jProgressBar2.setValue(pA.HP);
+                jProgressBar2.setForeground(Color.GREEN);
                 jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
 
             }
@@ -688,13 +689,13 @@ public class JFormLotta extends javax.swing.JFrame {
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa3.id);
 
-                    dati.setTurno(false);
-                    pp3--;
-                    initPokemonInCampo(dati);
-                    attesaTurno(dati);
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                dati.setTurno(false);
+                pp3--;
+                initPokemonInCampo(dati);
+                attesaTurno(dati);
 
             } else {
                 JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa3.ename + " non ha più pp");
@@ -713,16 +714,17 @@ public class JFormLotta extends javax.swing.JFrame {
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa1.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa1.id);
-                    dati.ricevi();
+                    //dati.ricevi();
 
-                    dati.setTurno(false);
-                    attesaTurno(dati);
+                    
 
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                dati.setTurno(false);            
                 pp1--;
                 initPokemonInCampo(dati);
+                attesaTurno(dati);
             } else {
                 JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa1.ename + " non ha più pp");
             }
@@ -741,15 +743,17 @@ public class JFormLotta extends javax.swing.JFrame {
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa4.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa4.id);
-                    dati.ricevi();
+                    //dati.ricevi();
 
-                    dati.setTurno(false);
-                    attesaTurno(dati);
+                   
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                 dati.setTurno(false);
                 pp4--;
                 initPokemonInCampo(dati);
+                attesaTurno(dati);
             } else {
                 JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa4.ename + " non ha più pp");
             }
@@ -768,15 +772,17 @@ public class JFormLotta extends javax.swing.JFrame {
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa2.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa2.id);
-                    dati.ricevi();
+                    //dati.ricevi();
 
-                    dati.setTurno(false);
-                    attesaTurno(dati);
+                    
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                dati.setTurno(false);
                 pp2--;
                 initPokemonInCampo(dati);
+                attesaTurno(dati);
             } else {
                 JOptionPane.showMessageDialog(null, dati.getListapokemonlotta().get(0).mossa2.ename + " non ha più pp");
             }
