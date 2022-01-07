@@ -229,7 +229,8 @@ public class JFormLotta extends javax.swing.JFrame {
 
             if ("m".equals(v[0])) {
                 mA = dati.searchMossa(Integer.parseInt(v[2].trim()));
-                jProgressBar1.setValue(jProgressBar1.getValue() - mA.power); //mA.Power
+                jProgressBar1.setValue(jProgressBar1.getValue() - mA.power);
+                jLabel3.setText(jProgressBar1.getValue() + "/" + jProgressBar1.getMaximum());
                 dati.setTurno(true);
                 try {
                     initResetPokemon(dati);
