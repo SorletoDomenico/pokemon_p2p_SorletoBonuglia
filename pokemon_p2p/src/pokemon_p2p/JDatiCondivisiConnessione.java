@@ -307,27 +307,27 @@ public class JDatiCondivisiConnessione {
         return m;
     }
 
-    public void ChiInizia() throws IOException {
-
-        Random r = new Random();
-        Integer n;
-        boolean finito = false;
-        do {
-            n = r.nextInt(2);
-            manda("t;" + pNoi.getPorte().toString() + ";" + n.toString());
-            ricevi();
-            if ("t".equals(temp[0])) {
-                if (n == 1 && Integer.parseInt(temp[2].trim()) == 0) {
-                    turno = true;
-                    finito = true;
-                } else if (n == 0 && Integer.parseInt(temp[2].trim()) == 1) {
-                    turno = false;
-                    finito = true;
-                }
-            }
-        } while (!finito);
-
-    }
+//    public void ChiInizia() throws IOException {
+//
+//        Random r = new Random();
+//        Integer n;
+//        boolean finito = false;
+//        do {
+//            n = r.nextInt(2);
+//            manda("t;" + pNoi.getPorte().toString() + ";" + n.toString());
+//            ricevi();
+//            if ("t".equals(temp[0])) {
+//                if (n == 1 && Integer.parseInt(temp[2].trim()) == 0) {
+//                    turno = true;
+//                    finito = true;
+//                } else if (n == 0 && Integer.parseInt(temp[2].trim()) == 1) {
+//                    turno = false;
+//                    finito = true;
+//                }
+//            }
+//        } while (!finito);
+//
+//    }
 
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;

@@ -132,6 +132,7 @@ public class JFormConnessione extends javax.swing.JFrame {
              String ip=jTextField1.getText();
              Integer porta=parseInt(jTextField2.getText());
             dati.mandaConnessione(ip,porta);
+            dati.setTurno(true);
         } catch (IOException ex) {
             Logger.getLogger(JFormConnessione.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -155,6 +156,7 @@ public class JFormConnessione extends javax.swing.JFrame {
         public void run(){
             try {
                dati.riceviConnessione();
+                dati.setTurno(false);
                 } catch (IOException ex) {
             Logger.getLogger(JFormConnessione.class.getName()).log(Level.SEVERE, null, ex);
          }

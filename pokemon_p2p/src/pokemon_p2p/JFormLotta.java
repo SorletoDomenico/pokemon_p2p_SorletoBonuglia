@@ -49,7 +49,7 @@ public class JFormLotta extends javax.swing.JFrame {
         dati.ricevi();
         initPokemonAvversario(this.dati);
         initHPAvversario(this.dati);
-        dati.ChiInizia();
+//        dati.ChiInizia();
 
         if (dati.getTurno() == false) {
             attesaTurno(dati);
