@@ -5,6 +5,7 @@
  */
 package pokemon_p2p;
 
+import java.awt.Color;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
@@ -27,6 +28,9 @@ public class JFormConnessione extends javax.swing.JFrame {
         dati = new JDatiCondivisiConnessione();
         initComponents();
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

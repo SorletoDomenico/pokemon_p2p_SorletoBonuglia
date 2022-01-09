@@ -251,14 +251,14 @@ public class JFormLotta extends javax.swing.JFrame {
                         }
                     }
 
-            if("f".equals(v[0])){
-                jLabel10.setText("Hai vinto");
-                JOptionPane.showMessageDialog(null, "Hai vinto! torna al menu principale");
-                JFormMenu jfmv = new JFormMenu(dati);
-                jfmv.setVisible(true);
-                setVisible(false);
-                
-            }
+                    if ("f".equals(v[0])) {
+                        jLabel10.setText("Hai vinto");
+                        JOptionPane.showMessageDialog(null, "Hai vinto! torna al menu principale");
+                        JFormMenu jfmv = new JFormMenu(dati);
+                        jfmv.setVisible(true);
+                        setVisible(false);
+
+                    }
                 } while (!dati.getTurno());
                 blocca(true);
             }
@@ -717,6 +717,14 @@ public class JFormLotta extends javax.swing.JFrame {
                 try {
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa3.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+                    if (jProgressBar2.getValue() < ((50 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.YELLOW);
+
+                    }
+                    if (jProgressBar2.getValue() < ((20 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.RED);
+
+                    }
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa3.id);
 
                 } catch (IOException ex) {
@@ -743,6 +751,14 @@ public class JFormLotta extends javax.swing.JFrame {
                     //JPeer p = new JPeer();
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa1.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+                    if (jProgressBar2.getValue() < ((50 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.YELLOW);
+
+                    }
+                    if (jProgressBar2.getValue() < ((20 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.RED);
+
+                    }
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa1.id);
                     //dati.ricevi();
 
@@ -770,6 +786,14 @@ public class JFormLotta extends javax.swing.JFrame {
                     //JPeer p = new JPeer();
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa4.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+                    if (jProgressBar2.getValue() < ((50 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.YELLOW);
+
+                    }
+                    if (jProgressBar2.getValue() < ((20 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.RED);
+
+                    }
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa4.id);
                     //dati.ricevi();
 
@@ -797,6 +821,14 @@ public class JFormLotta extends javax.swing.JFrame {
                     //JPeer p = new JPeer();
                     jProgressBar2.setValue(jProgressBar2.getValue() - dati.getListapokemonlotta().get(0).mossa2.power);
                     jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+                     if (jProgressBar2.getValue() < ((50 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.YELLOW);
+
+                    }
+                    if (jProgressBar2.getValue() < ((20 * jProgressBar2.getMaximum()) / 100)) {
+                        jProgressBar2.setForeground(Color.RED);
+
+                    }
                     dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa2.id);
                     //dati.ricevi();
 
