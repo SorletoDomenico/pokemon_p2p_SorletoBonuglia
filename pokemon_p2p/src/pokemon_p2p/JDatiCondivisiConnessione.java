@@ -35,6 +35,7 @@ public class JDatiCondivisiConnessione {
     public JPeer pAvversario;
     public ArrayList<JPokemon> listapokemon = new ArrayList<JPokemon>();
     public ArrayList<JMoves> listamosse = new ArrayList<JMoves>();
+    public ArrayList<JType> listatipi = new ArrayList<JType>();
 
     public ArrayList<JPokemon> listapokemonSelezionati = new ArrayList<JPokemon>();
     public ArrayList<JPokemonLotta> listapokemonlotta = new ArrayList<JPokemonLotta>();
@@ -170,8 +171,12 @@ public class JDatiCondivisiConnessione {
         JSONParser parser = new JSONParser();
         JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
         JSONArray am = (JSONArray) parser.parse(new FileReader("moves.json"));
+        JSONArray at = (JSONArray) parser.parse(new FileReader("types.json"));
+        
+        Object[] arrayReceipients ;
         ArrayList<JPokemon> temp1 = new ArrayList<JPokemon>();
         ArrayList<JMoves> temp2 = new ArrayList<JMoves>();
+        ArrayList<JType> temp3 = new ArrayList<JType>();
 
         for (Object obj : a) {
             // obj = parser.parse(new FileReader("pokemon.json"));
@@ -201,9 +206,34 @@ public class JDatiCondivisiConnessione {
             JMoves m = new JMoves(accuracy, ename, id, power, pp, type);
             temp2.add(m);
         }
+        
+        for (Object obj : at) {
+            JSONObject Type = (JSONObject) obj;
+
+            String name = (String) Type.get("name");
+            JSONArray immunes = (JSONArray) Type.get("immunes");
+            ArrayList<String> immunes2 = new ArrayList<String>();
+            for(int i=0;i<immunes.size();i++){
+             immunes2.add(immunes.get(i).toString());
+            }
+            
+            JSONArray weaknesses = (JSONArray) Type.get("weaknesses");
+            ArrayList<String> weaknesses2 = new ArrayList<String>();
+            for(int i=0;i<weaknesses.size();i++){
+             weaknesses2.add(weaknesses.get(i).toString());
+            }
+            JSONArray strenghts = (JSONArray) Type.get("strengths");
+            ArrayList<String> strenghts2 = new ArrayList<String>();
+            for(int i=0;i<strenghts.size();i++){
+             strenghts2.add(strenghts.get(i).toString());
+            }
+            JType t = new JType(name, immunes2, weaknesses2, strenghts2);
+            temp3.add(t);
+        }
 
         listapokemon = temp1;
         listamosse = temp2;
+        listatipi = temp3;
     }
 
     public void RandomizeMoves() {
