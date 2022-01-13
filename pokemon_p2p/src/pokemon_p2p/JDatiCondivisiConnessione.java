@@ -51,7 +51,7 @@ public class JDatiCondivisiConnessione {
         pNoi = new JPeer("", InetAddress.getLocalHost().getHostAddress(), 667);
         pAvversario = new JPeer();
 
-        System.out.println(pNoi.getIpAndport());
+        //System.out.println(pNoi.getIpAndport());
 
         try {
             s = new DatagramSocket(pNoi.getPorte());
