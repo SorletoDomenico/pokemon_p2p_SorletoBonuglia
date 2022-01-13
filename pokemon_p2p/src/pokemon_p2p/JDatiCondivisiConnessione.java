@@ -44,11 +44,18 @@ public class JDatiCondivisiConnessione {
     public String[] temp;
 
     public Boolean turno;
-
-    public JDatiCondivisiConnessione() throws UnknownHostException {
+    
+    
+            
+        
+    public JDatiCondivisiConnessione(){
 
         c = false;
-        pNoi = new JPeer("", InetAddress.getLocalHost().getHostAddress(), 667);
+        try {
+            pNoi = new JPeer("", InetAddress.getLocalHost().getHostAddress(), 667);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(JDatiCondivisiConnessione.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         pAvversario = new JPeer();
 
         //System.out.println(pNoi.getIpAndport());
@@ -58,10 +65,12 @@ public class JDatiCondivisiConnessione {
         } catch (SocketException ex) {
             Logger.getLogger(JDatiCondivisiConnessione.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
 
     }
 
-    public void mandaConnessione(String ip, Integer port) throws SocketException, IOException {
+    public void mandaConnessione(String ip, Integer port, String nome) throws SocketException, IOException {
 
         //controllo se è connesso
         if (c) {
@@ -69,6 +78,7 @@ public class JDatiCondivisiConnessione {
         } else {
             //manda
             byte[] data = new byte[1500];
+            
             data = ("c;" + pNoi.getindIp() + ";" + pNoi.getPorte() + ";" + pNoi.getNome()).getBytes();
             DatagramPacket p = new DatagramPacket(data, data.length);
 
