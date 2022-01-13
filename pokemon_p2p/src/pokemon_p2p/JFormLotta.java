@@ -43,7 +43,7 @@ public class JFormLotta extends javax.swing.JFrame {
         initPokemonInCampo(this.dati);
         initColorButton(this.dati);
         //richiamiamo metodo manda pokemon che abbiamo in campo
-        dati.manda("p;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
+        dati.manda("p;" + dati.getpNoi().getIpAndport()+ ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
         //ricevo il pokemon dell'avversario
 
         dati.ricevi();
@@ -86,7 +86,7 @@ public class JFormLotta extends javax.swing.JFrame {
             }
 
             if (dati.getListapokemonlotta().isEmpty()) {
-                dati.manda("f;" + dati.getpNoi().getPorte() + ";" + "Hai vinto");
+                dati.manda("f;" + dati.getpNoi().getIpAndport() + ";" + "Hai vinto");
                 jLabel10.setText("Hai perso");
                 JOptionPane.showMessageDialog(null, "Hai perso! torna al menu principale");
                 JFormMenu jfm = new JFormMenu(dati);
@@ -96,7 +96,7 @@ public class JFormLotta extends javax.swing.JFrame {
                 // jLabel10.setText("Hai Vinto");
 
                 //mando il pokemon nuovo all'avversario
-                dati.manda("p;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
+                dati.manda("p;" + dati.getpNoi().getIpAndport() + ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
                 setPP();
                 initHP(dati);
                 initPokemonInCampo(dati);
@@ -801,7 +801,7 @@ public class JFormLotta extends javax.swing.JFrame {
                         jProgressBar2.setForeground(Color.RED);
 
                     }
-                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa3.id);
+                    dati.manda("m;" + dati.getpNoi().getIpAndport() + ";" + dati.getListapokemonlotta().get(0).mossa3.id);
 
                 } catch (IOException ex) {
                     Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
@@ -835,7 +835,7 @@ public class JFormLotta extends javax.swing.JFrame {
                         jProgressBar2.setForeground(Color.RED);
 
                     }
-                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa1.id);
+                    dati.manda("m;" + dati.getpNoi().getIpAndport() + ";" + dati.getListapokemonlotta().get(0).mossa1.id);
                     //dati.ricevi();
 
                 } catch (IOException ex) {
@@ -870,7 +870,7 @@ public class JFormLotta extends javax.swing.JFrame {
                         jProgressBar2.setForeground(Color.RED);
 
                     }
-                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa4.id);
+                    dati.manda("m;" + dati.getpNoi().getIpAndport() + ";" + dati.getListapokemonlotta().get(0).mossa4.id);
                     //dati.ricevi();
 
                 } catch (IOException ex) {
@@ -905,7 +905,7 @@ public class JFormLotta extends javax.swing.JFrame {
                         jProgressBar2.setForeground(Color.RED);
 
                     }
-                    dati.manda("m;" + dati.getpNoi().getPorte() + ";" + dati.getListapokemonlotta().get(0).mossa2.id);
+                    dati.manda("m;" + dati.getpNoi().getIpAndport() + ";" + dati.getListapokemonlotta().get(0).mossa2.id);
                     //dati.ricevi();
 
                 } catch (IOException ex) {

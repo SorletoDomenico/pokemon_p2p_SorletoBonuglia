@@ -44,16 +44,14 @@ public class JDatiCondivisiConnessione {
     public String[] temp;
 
     public Boolean turno;
-    
-    
 
-    public JDatiCondivisiConnessione() {
+    public JDatiCondivisiConnessione() throws UnknownHostException {
 
         c = false;
-        pNoi = new JPeer();
+        pNoi = new JPeer("", InetAddress.getLocalHost().getHostAddress(), 667);
         pAvversario = new JPeer();
-        pNoi.setPorte(667);
-        pNoi.setindIp("localhost");
+
+        System.out.println(pNoi.getIpAndport());
 
         try {
             s = new DatagramSocket(pNoi.getPorte());
@@ -93,11 +91,12 @@ public class JDatiCondivisiConnessione {
             pAvversario.setPorte(Integer.parseInt(vect[2]));
             pAvversario.setindIp(vect[1]);
 
+            pAvversario.setIpAndport(vect[1] + ":" + vect[2]);
+
             c = true;
         }
 
     }
-
 
     public void manda(String sa) throws UnknownHostException, IOException {
         byte[] mandaDati = (sa).getBytes();
@@ -128,6 +127,9 @@ public class JDatiCondivisiConnessione {
             pAvversario.setNome(vect[3]);
             pAvversario.setPorte(Integer.parseInt(vect[2]));
             pAvversario.setindIp(vect[1]);
+
+            pAvversario.setIpAndport(vect[1] + ":" + vect[2]);
+
             c = true;
             //manda
             data = new byte[1500];
@@ -142,7 +144,6 @@ public class JDatiCondivisiConnessione {
         }
 
     }
-
 
     public void ricevi() throws IOException {
         byte[] riceviDati;
@@ -159,7 +160,7 @@ public class JDatiCondivisiConnessione {
             dividi = new String(riceviDati);
             vect = dividi.split(";");
             //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
-            if (Integer.parseInt(vect[1]) == pAvversario.getPorte()) {
+            if (vect[1] == pAvversario.getIpAndport()) {
                 temp = vect;
                 check = false; //in questo caso uscirà dal do-while 
             }
@@ -172,8 +173,8 @@ public class JDatiCondivisiConnessione {
         JSONArray a = (JSONArray) parser.parse(new FileReader("pokemon.json"));
         JSONArray am = (JSONArray) parser.parse(new FileReader("moves.json"));
         JSONArray at = (JSONArray) parser.parse(new FileReader("types.json"));
-        
-        Object[] arrayReceipients ;
+
+        Object[] arrayReceipients;
         ArrayList<JPokemon> temp1 = new ArrayList<JPokemon>();
         ArrayList<JMoves> temp2 = new ArrayList<JMoves>();
         ArrayList<JType> temp3 = new ArrayList<JType>();
@@ -206,26 +207,26 @@ public class JDatiCondivisiConnessione {
             JMoves m = new JMoves(accuracy, ename, id, power, pp, type);
             temp2.add(m);
         }
-        
+
         for (Object obj : at) {
             JSONObject Type = (JSONObject) obj;
 
             String name = (String) Type.get("name");
             JSONArray immunes = (JSONArray) Type.get("immunes");
             ArrayList<String> immunes2 = new ArrayList<String>();
-            for(int i=0;i<immunes.size();i++){
-             immunes2.add(immunes.get(i).toString());
+            for (int i = 0; i < immunes.size(); i++) {
+                immunes2.add(immunes.get(i).toString());
             }
-            
+
             JSONArray weaknesses = (JSONArray) Type.get("weaknesses");
             ArrayList<String> weaknesses2 = new ArrayList<String>();
-            for(int i=0;i<weaknesses.size();i++){
-             weaknesses2.add(weaknesses.get(i).toString());
+            for (int i = 0; i < weaknesses.size(); i++) {
+                weaknesses2.add(weaknesses.get(i).toString());
             }
             JSONArray strenghts = (JSONArray) Type.get("strengths");
             ArrayList<String> strenghts2 = new ArrayList<String>();
-            for(int i=0;i<strenghts.size();i++){
-             strenghts2.add(strenghts.get(i).toString());
+            for (int i = 0; i < strenghts.size(); i++) {
+                strenghts2.add(strenghts.get(i).toString());
             }
             JType t = new JType(name, immunes2, weaknesses2, strenghts2);
             temp3.add(t);
@@ -358,7 +359,6 @@ public class JDatiCondivisiConnessione {
 //        } while (!finito);
 //
 //    }
-
     public ArrayList<JPokemon> getListapokemon() {
         return listapokemon;
     }
@@ -402,7 +402,5 @@ public class JDatiCondivisiConnessione {
     public void setTurno(Boolean turno) {
         this.turno = turno;
     }
-    
-    
 
 }
