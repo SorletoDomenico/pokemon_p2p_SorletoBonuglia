@@ -10,6 +10,17 @@ package pokemon_p2p;
  * @author sorleto_domenico
  */
 public class JPokemon {
+
+    public JPokemon(Integer id, String name, String type1, String type2, Integer HP, String description, String sprite, String hires) {
+        this.id = id;
+        this.name = name;
+        this.type1 = type1;
+        this.type2 = type2;
+        this.HP = HP;
+        this.description = description;
+        this.sprite = sprite;
+        this.hires = hires;
+    }
     Integer id;
     String name;
     String type1;

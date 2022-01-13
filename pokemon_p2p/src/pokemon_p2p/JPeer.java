@@ -11,8 +11,9 @@ package pokemon_p2p;
  */
 public class JPeer {
 
-    private String nome, indIp;
+    private String nome, indIp, ipAndport;
     private Integer porte;
+    
 
     public JPeer() {
     }
@@ -21,6 +22,7 @@ public class JPeer {
         this.nome = nome;
         this.indIp = indIp;
         this.porte = porte;
+        ipAndport = indIp + ":" + porte;
     }
 
     public Integer getPorte() {
@@ -30,8 +32,7 @@ public class JPeer {
     public void setPorte(Integer porte) {
         this.porte = porte;
     }
-    
-    
+
     public String getNome() {
         return nome;
     }
@@ -47,6 +48,13 @@ public class JPeer {
     public void setindIp(String indIp) {
         this.indIp = indIp;
     }
-    
+
+    public String getIpAndport() {
+        return ipAndport;
+    }
+
+    public void setIpAndport(String ipAndport) {
+        this.ipAndport = ipAndport;
+    }
 
 }

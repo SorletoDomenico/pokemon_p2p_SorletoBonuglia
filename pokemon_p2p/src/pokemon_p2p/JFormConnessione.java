@@ -5,10 +5,12 @@
  */
 package pokemon_p2p;
 
+import java.awt.Color;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +28,9 @@ public class JFormConnessione extends javax.swing.JFrame {
         dati = new JDatiCondivisiConnessione();
         initComponents();
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,15 +134,16 @@ public class JFormConnessione extends javax.swing.JFrame {
       public void run(){
          try {
              String ip=jTextField1.getText();
-        Integer porta=parseInt(jTextField2.getText());
+             Integer porta=parseInt(jTextField2.getText());
             dati.mandaConnessione(ip,porta);
+            dati.setTurno(true);
         } catch (IOException ex) {
             Logger.getLogger(JFormConnessione.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
     };
    threadManda.start();
-   System.out.println(threadManda.getName());
+   //System.out.println(threadManda.getName());
             
         
            
@@ -154,6 +160,7 @@ public class JFormConnessione extends javax.swing.JFrame {
         public void run(){
             try {
                dati.riceviConnessione();
+                dati.setTurno(false);
                 } catch (IOException ex) {
             Logger.getLogger(JFormConnessione.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -166,10 +173,14 @@ public class JFormConnessione extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:     
-        JFormMenu jfm = new JFormMenu();
+        // TODO add your handling code here:
+        if(dati.getC()){
+       JFormMenu jfm = new JFormMenu(dati);
         jfm.setVisible(true);
         setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, "Prima devi connetterti all'avversario");
+        }     
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

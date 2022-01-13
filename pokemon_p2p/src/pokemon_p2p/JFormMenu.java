@@ -5,6 +5,14 @@
  */
 package pokemon_p2p;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import org.json.simple.parser.ParseException;
+
 /**
  *
  * @author sorleto_domenico
@@ -14,8 +22,14 @@ public class JFormMenu extends javax.swing.JFrame {
     /**
      * Creates new form JFormMenu
      */
-    public JFormMenu() {
+    JDatiCondivisiConnessione dati;
+    public JFormMenu(JDatiCondivisiConnessione dati) {
         initComponents();
+        this.dati= dati;
+    }
+
+    private JFormMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -103,23 +117,39 @@ public class JFormMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+
+       
         
-        
-        
-      
-        JFormSelezionaSquadra jsq = new JFormSelezionaSquadra();
+        try {
+            dati.caricadaJson();
+        } catch (IOException ex) {
+            Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         JFormSelezionaSquadra jsq = new JFormSelezionaSquadra(dati);
         jsq.setVisible(true);
         this.setVisible(false);
-        
-     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+      if(dati.getListapokemonSelezionati().size()==6){
       
-        JFormLotta jl = new JFormLotta();
-        jl.setVisible(true);
-        this.setVisible(false);    
+      JFormLotta jl;
+          try {
+              jl = new JFormLotta(dati);
+              jl.setVisible(true);
+        this.setVisible(false);
+          } catch (IOException ex) {
+              Logger.getLogger(JFormMenu.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        
+      }else{
+          JOptionPane.showMessageDialog(null, "Prima devi creare la tua squadra!");
+      }
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
