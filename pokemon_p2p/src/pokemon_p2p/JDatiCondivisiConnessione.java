@@ -44,9 +44,7 @@ public class JDatiCondivisiConnessione {
     public String[] temp;
 
     public Boolean turno;
-    
-    
-            
+          
         
     public JDatiCondivisiConnessione(){
 
@@ -170,7 +168,7 @@ public class JDatiCondivisiConnessione {
             dividi = new String(riceviDati);
             vect = dividi.split(";");
             //condizione dove se la porta è uguale alla porta avversaria inseriamo i dati dentro temp
-            if (vect[1] == pAvversario.getIpAndport()) {
+            if (vect[1].equals(pAvversario.getIpAndport())) {
                 temp = vect;
                 check = false; //in questo caso uscirà dal do-while 
             }
