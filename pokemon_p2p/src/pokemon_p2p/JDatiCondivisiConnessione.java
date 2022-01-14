@@ -42,7 +42,7 @@ public class JDatiCondivisiConnessione {
 
     public Boolean c;  //connessione
     public String[] temp;
-
+    
     public Boolean turno;
           
         

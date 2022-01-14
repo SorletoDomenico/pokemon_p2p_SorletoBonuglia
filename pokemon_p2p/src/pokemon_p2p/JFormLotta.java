@@ -34,16 +34,18 @@ public class JFormLotta extends javax.swing.JFrame {
     Integer pp1, pp2, pp3, pp4;
     public JPokemon pA;
     public JMoves mA;
+    Integer listaAvversario = 6;
 
     public JFormLotta(JDatiCondivisiConnessione dati) throws IOException {
         this.dati = dati;
         initComponents();
+        initIndiciPokemon();
         setPP();
         initHP(this.dati);
         initPokemonInCampo(this.dati);
         initColorButton(this.dati);
         //richiamiamo metodo manda pokemon che abbiamo in campo
-        dati.manda("p;" + dati.getpNoi().getIpAndport()+ ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
+        dati.manda("p;" + dati.getpNoi().getIpAndport() + ";" + dati.getListapokemonlotta().get(0).pokemon.id.toString());
         //ricevo il pokemon dell'avversario
 
         dati.ricevi();
@@ -60,29 +62,47 @@ public class JFormLotta extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    private void initIndiciPokemon() {
+        jLabel17.setForeground(Color.GREEN);
+        jLabel23.setForeground(Color.GREEN);
+    }
+
     private void initResetPokemon(JDatiCondivisiConnessione dati) throws IOException {
 
         if (jProgressBar1.getValue() <= 0) {
             dati.getListapokemonlotta().remove(0);
             switch (dati.getListapokemonlotta().size()) {
-//                case 5:
-//                    jLabel11.setOpaque(true);
-//                    break;
-//                case 4:
-//                    jLabel12.setOpaque(true);
-//                    break;
-//                case 3:
-//                    jLabel13.setOpaque(true);
-//                    break;
-//                case 2:
-//                    jLabel14.setOpaque(true);
-//                    break;
-//                case 1:
-//                    jLabel15.setOpaque(true);
-//                    break;
-//                case 0:
-//                    jLabel13.setOpaque(true);
-//                    break;
+                case 5:
+                    //metto la label verde a rossa e quella dopo a verde
+                    jLabel17.setForeground(Color.RED);
+                    jLabel18.setForeground(Color.GREEN);
+                    break;
+                case 4:
+                    //metto la label verde a rossa
+                    jLabel18.setForeground(Color.RED);
+                    jLabel19.setForeground(Color.GREEN);
+                    break;
+                case 3:
+                    //metto la label verde a rossa
+                    jLabel19.setForeground(Color.RED);
+                    jLabel20.setForeground(Color.GREEN);
+                    break;
+                case 2:
+                    //metto la label verde a rossa
+                    jLabel20.setForeground(Color.RED);
+                    jLabel21.setForeground(Color.GREEN);
+                    break;
+                case 1:
+                    //metto la label verde a rossa
+                    jLabel21.setForeground(Color.RED);
+                    jLabel22.setForeground(Color.GREEN);
+                    break;
+                case 0:
+                    //metto la label verde a rossa
+                    jLabel22.setForeground(Color.RED);
+                    // jLabel23.setForeground(Color.GREEN);
+                    break;
+
             }
 
             if (dati.getListapokemonlotta().isEmpty()) {
@@ -210,14 +230,14 @@ public class JFormLotta extends javax.swing.JFrame {
         Image pokeball;
         try {
             pokeball = ImageIO.read(new File(imagePokeball));
-          //  Image newImage2 = pokeball.getScaledInstance(jLabel130.getWidth(), jLabel130.getHeight(), Image.SCALE_DEFAULT);
-          //  ImageIcon icon = new ImageIcon(newImage2);
+            //  Image newImage2 = pokeball.getScaledInstance(jLabel130.getWidth(), jLabel130.getHeight(), Image.SCALE_DEFAULT);
+            //  ImageIcon icon = new ImageIcon(newImage2);
 //            jLabel11.setIcon(icon);
 //            jLabel12.setIcon(icon);
 //            jLabel13.setIcon(icon);
 //            jLabel14.setIcon(icon);
 //            jLabel15.setIcon(icon);
-           // jLabel130.setIcon(icon);
+            // jLabel130.setIcon(icon);
 
         } catch (IOException ex) {
             Logger.getLogger(JFormLotta.class.getName()).log(Level.SEVERE, null, ex);
@@ -253,7 +273,7 @@ public class JFormLotta extends javax.swing.JFrame {
                     }
                     String[] v = dati.getTemp();
                     if ("p".equals(v[0])) {
-
+                        listaAvversario--;
                         pA = dati.searchPokemon(Integer.parseInt(v[2].trim()));
                         //immagine
                         String imagePath = pA.hires;
@@ -275,7 +295,39 @@ public class JFormLotta extends javax.swing.JFrame {
                         jProgressBar2.setValue(pA.HP);
                         jProgressBar2.setForeground(Color.GREEN);
                         jLabel8.setText(jProgressBar2.getValue() + "/" + jProgressBar2.getMaximum());
+                        switch (listaAvversario) {
+                            case 5:
+                                //metto la label verde a rossa e quella dopo a verde
+                                jLabel23.setForeground(Color.RED);
+                                jLabel24.setForeground(Color.GREEN);
+                                break;
+                            case 4:
+                                //metto la label verde a rossa
+                                jLabel24.setForeground(Color.RED);
+                                jLabel25.setForeground(Color.GREEN);
+                                break;
+                            case 3:
+                                //metto la label verde a rossa
+                                jLabel25.setForeground(Color.RED);
+                                jLabel26.setForeground(Color.GREEN);
+                                break;
+                            case 2:
+                                //metto la label verde a rossa
+                                jLabel26.setForeground(Color.RED);
+                                jLabel27.setForeground(Color.GREEN);
+                                break;
+                            case 1:
+                                //metto la label verde a rossa
+                                jLabel27.setForeground(Color.RED);
+                                jLabel28.setForeground(Color.GREEN);
+                                break;
+                            case 0:
+                                //metto la label verde a rossa
+                                jLabel28.setForeground(Color.RED);
+                                // jLabel23.setForeground(Color.GREEN);
+                                break;
 
+                        }
                     }
 
                     if ("m".equals(v[0])) {
@@ -589,6 +641,18 @@ public class JFormLotta extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
 
         jLabel4.setText("jLabel4");
 
@@ -649,6 +713,30 @@ public class JFormLotta extends javax.swing.JFrame {
 
         jLabel9.setText("jLabel9");
 
+        jLabel17.setText("jLabel17");
+
+        jLabel18.setText("jLabel18");
+
+        jLabel19.setText("jLabel19");
+
+        jLabel20.setText("jLabel20");
+
+        jLabel21.setText("jLabel21");
+
+        jLabel22.setText("jLabel22");
+
+        jLabel23.setText("jLabel23");
+
+        jLabel24.setText("jLabel24");
+
+        jLabel25.setText("jLabel25");
+
+        jLabel26.setText("jLabel26");
+
+        jLabel27.setText("jLabel27");
+
+        jLabel28.setText("jLabel28");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -656,6 +744,72 @@ public class JFormLotta extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel16)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel11)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel19)))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(17, 17, 17)
+                                        .addComponent(jLabel1))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel21)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel22)))
+                        .addGap(228, 228, 228)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(54, 54, 54)
+                                        .addComponent(jLabel9)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel24)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel26)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel27)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -681,57 +835,37 @@ public class JFormLotta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel11))))
-                .addGap(108, 108, 108)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel1))))
-                    .addComponent(jLabel14))
-                .addGap(228, 228, 228)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel9)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel20)
+                                        .addComponent(jLabel21)
+                                        .addComponent(jLabel22)
+                                        .addComponent(jLabel23)
+                                        .addComponent(jLabel24)
+                                        .addComponent(jLabel25)
+                                        .addComponent(jLabel26)
+                                        .addComponent(jLabel27))
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel28))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel6)
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -971,7 +1105,19 @@ public class JFormLotta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
